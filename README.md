@@ -1,2 +1,2 @@
 # leetcode
-Personal Leetcode review record.
+LeetCode Problems' Solutions.
