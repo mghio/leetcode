@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class MergeRange {
 
-  public int[][] merge(int[][] intervals) {
+  public int[][] mergeSolution1(int[][] intervals) {
     if (intervals == null || intervals.length == 0) {
       return intervals;
     }
@@ -38,6 +38,25 @@ public class MergeRange {
       result[i] = list.get(i);
     }
     return result;
+  }
+
+  public int[][] mergeSolution2(int[][] intervals) {
+    if (intervals == null || intervals.length == 0) {
+      return new int[0][2];
+    }
+
+    Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+
+    List<int[]> merged = new ArrayList<>();
+    for (int[] interval : intervals) {
+      int left = interval[0], right = interval[1];
+      if (merged.size() == 0 || merged.get(merged.size() - 1)[1] < left) {
+        merged.add(interval);
+      } else {
+        merged.get(merged.size() - 1)[1] = Math.max(merged.get(merged.size() - 1)[1], right);
+      }
+    }
+    return merged.toArray(new int[merged.size()][]);
   }
 
 }
