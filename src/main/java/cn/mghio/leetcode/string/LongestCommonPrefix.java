@@ -8,14 +8,42 @@ package cn.mghio.leetcode.string;
  */
 public class LongestCommonPrefix {
 
-  /**
-   * 方法一：横向扫描法
-   */
   public String longestCommonPrefix(String[] strs) {
     if (strs == null || strs.length < 2) {
       return "";
     }
 
+    // 方法一：横向扫描法
+//    String commonPrefix = horizontalScan(strs);
+
+    // 方法二：纵向扫描法
+    String commonPrefix = verticalScan(strs);
+
+    return commonPrefix;
+  }
+
+  /**
+   * 方法二：纵向扫描法
+   */
+  private String verticalScan(String[] strs) {
+    int length = strs[0].length();
+    int count = strs.length;
+
+    for (int i = 0; i < length; i++) {
+      char c = strs[0].charAt(i);
+      for (int j = 1; j < count; j++) {
+        if (i == strs[j].length() || strs[j].charAt(i) != c) {
+          return strs[0].substring(0, i);
+        }
+      }
+    }
+    return strs[0];
+  }
+
+  /**
+   * 方法一：横向扫描法
+   */
+  private String horizontalScan(String[] strs) {
     String commonPrefix = strs[0];
     int count = strs.length;
     for (int i = 1; i < count; i++) {
@@ -29,7 +57,6 @@ public class LongestCommonPrefix {
         break;
       }
     }
-
     return commonPrefix;
   }
 
