@@ -17,9 +17,39 @@ public class LongestCommonPrefix {
 //    String commonPrefix = horizontalScan(strs);
 
     // 方法二：纵向扫描法
-    String commonPrefix = verticalScan(strs);
+//    String commonPrefix = verticalScan(strs);
+
+    // 方法三：分治法
+    String commonPrefix = divideAndConquer(strs);
 
     return commonPrefix;
+  }
+
+  /**
+   * 方法三：分治法
+   */
+  private String divideAndConquer(String[] strs) {
+    return longestCommonPrefix(strs, 0, strs.length - 1);
+  }
+
+  private String longestCommonPrefix(String[] strs, int start, int end) {
+    if (start == end) {
+      return strs[start];
+    }
+    int mid = (end - start) / 2 + start;
+    String lcpLeft = longestCommonPrefix(strs, start, mid);
+    String lcpRight = longestCommonPrefix(strs, mid + 1, end);
+    return commonPrefix(lcpLeft, lcpRight);
+  }
+
+  private String commonPrefix(String lcpLeft, String lcpRight) {
+    int minLength = Math.min(lcpLeft.length(), lcpRight.length());
+    for (int i = 0; i < minLength; i++) {
+      if (lcpLeft.charAt(i) != lcpRight.charAt(i)) {
+        return lcpLeft.substring(0, i);
+      }
+    }
+    return lcpLeft.substring(0, minLength);
   }
 
   /**
