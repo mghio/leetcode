@@ -17,8 +17,50 @@ public class LongestPalindrome {
 //    String result = violentSolution(s);
 
     // 方法二：中心扩散法
-    String result = expandCenter(s);
+//    String result = expandCenter(s);
 
+    // 方法三：动态规划法
+    String result = dynamicProgramming(s);
+
+    return result;
+  }
+
+  /**
+   * 方法三：动态规划法
+   */
+  private String dynamicProgramming(String s) {
+    int maxLen = 1;
+    int begin = 0;
+    int len = s.length();
+
+    // dp[i][j] 表示 s[i ... j] 是否是回文
+    boolean[][] dp = new boolean[len][len];
+    for (int i = 0; i < len; i++) {
+      dp[i][i] = true;
+    }
+
+    char[] charArray = s.toCharArray();
+    // 注意：左下角先填
+    for (int i = 1; i < len; i++) {
+      for (int j = 0; j < i; j++) {
+        if (charArray[j] != charArray[i]) {
+          dp[j][i] = false;
+        } else {
+          if (i - j < 3) {
+            dp[j][i] = true;
+          } else {
+            dp[j][i] = dp[j + 1][i - 1];
+          }
+        }
+        // 只要 dp[j][i] = true 成功，就表示子串 s[i ... j] 是回文，则记录回文的长度和起始位置
+        if (dp[j][i] && i - j + 1 > maxLen) {
+          maxLen = i - j + 1;
+          begin = j;
+        }
+      }
+    }
+
+    String result = s.substring(begin, begin + maxLen);
     return result;
   }
 
