@@ -1,7 +1,9 @@
 package cn.mghio.leetcode.string;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -31,10 +33,49 @@ public class ReverseWords {
 //    String result = getReverseWordWithLanguageFeature2(s);
 
     // 方法二：自行编写方法实现
-    // Step 1: 去除多余空格，并转换为可变字符串（StringBuilder）
-    String result = customAlgo(s);
+//    String result = customAlgo(s);
+
+    // 方法三：双端队列
+    String result = getReverseWordWithDeque(s);
 
     return result;
+  }
+
+  /**
+   * 方法三：双端队列法
+   *
+   * 时间复杂度：O(N)，其中 N 为输入字符串的长度。
+   * 空间复杂度：O(N)，双端队列存储单词需要 O(N) 的空间。
+   */
+  private String getReverseWordWithDeque(String s) {
+    int left = 0;
+    int right = s.length() - 1;
+
+    // 去除字符串左边空格
+    while (left <= right && s.charAt(left) == ' ') {
+      left++;
+    }
+    // 去除字符串右边空格
+    while (left <= right && s.charAt(right) == ' ') {
+      right--;
+    }
+
+    Deque<String> d = new ArrayDeque<>();
+    StringBuilder word = new StringBuilder();
+    while (left <= right) {
+      char c = s.charAt(left);
+      if ((word.length() != 0) && (c == ' ')) {
+        // 将单词 push 到队列的头部
+        d.offerFirst(word.toString());
+        word.setLength(0);
+      } else if (c != ' ') {
+        word.append(c);
+      }
+      ++left;
+    }
+    d.offerFirst(word.toString());
+
+    return String.join(" ", d);
   }
 
   /**
@@ -44,7 +85,7 @@ public class ReverseWords {
    * 空间复杂度：需要 O(N) 的空间来存储字符串，而 C++ 方法因为字符串可变只需要 O(1)O(1) 的额外空间来存放若干变量。
    */
   private String customAlgo(String s) {
-    // Step 1: 去除首尾空格并转换为可变的字符串
+    // Step 1: 去除多余空格，并转换为可变字符串（StringBuilder）
     StringBuilder sb = trimSpaceAndConvertToStringBuilder(s);
     // Step 2: 翻转字符串
     reverse(sb, 0, sb.length() - 1);
