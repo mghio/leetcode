@@ -60,8 +60,7 @@ public class LongestPalindrome {
       }
     }
 
-    String result = s.substring(begin, begin + maxLen);
-    return result;
+    return s.substring(begin, begin + maxLen);
   }
 
   /**
