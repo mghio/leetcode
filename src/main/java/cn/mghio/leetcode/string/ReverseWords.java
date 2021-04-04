@@ -1,5 +1,9 @@
 package cn.mghio.leetcode.string;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
  * 给定一个字符串，逐个翻转字符串中的每个单词。
  *
@@ -18,11 +22,30 @@ public class ReverseWords {
     if (s == null) {
       return null;
     }
-
     if (s.trim().length() < 1) {
       return s;
     }
 
+    // 方法一：使用语言特性
+//    String result = getReverseWordWithLanguageFeature1(s);
+    String result = getReverseWordWithLanguageFeature2(s);
+
+    return result;
+  }
+
+  private String getReverseWordWithLanguageFeature2(String s) {
+    List<String> wordList = Arrays.asList(s.trim().split("\\s+"));
+    Collections.reverse(wordList);
+    return String.join(" ", wordList);
+  }
+
+  /**
+   * 方法一：使用语言特性
+   *
+   * 时间复杂度：O(N)，其中 N 为输入字符串的长度。
+   * 空间复杂度：O(N)，用来存储字符串分割之后的结果。
+   */
+  private String getReverseWordWithLanguageFeature1(String s) {
     String[] strArray = s.trim().split("\\s+");
     for (int i = 0, len = strArray.length; i < len / 2; i++) {
       String temp = strArray[i];
@@ -30,7 +53,8 @@ public class ReverseWords {
       strArray[len - i - 1] = temp;
     }
 
-    return String.join(" ", strArray);
+    String result = String.join(" ", strArray);
+    return result;
   }
 
 }
