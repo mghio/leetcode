@@ -22,11 +22,32 @@ public class TwoSum {
 //    int[] result = violentSolution(nums, target);
 
     // 方法二：二分查找法
-    int[] result = binarySearch(nums, target);
+//    int[] result = binarySearch(nums, target);
+
+    // 方法三：双指针法
+    int[] result = doublePoint(nums, target);
 
     return result;
   }
 
+  private int[] doublePoint(int[] nums, int target) {
+    int low = 0, high = nums.length - 1;
+    while (low < high) {
+      int sum = nums[low] + nums[high];
+      if (sum == target) {
+        return new int[]{low + 1, high + 1};
+      } else if (sum > target) {
+        high--;
+      } else {
+        low++;
+      }
+    }
+    return new int[]{-1, -1};
+  }
+
+  /**
+   * 方法二：二分查找法，充分利用了数组有序的特点
+   */
   private int[] binarySearch(int[] nums, int target) {
     for (int i = 0; i < nums.length; i++) {
       int low = i + 1, high = nums.length - 1;
@@ -42,7 +63,8 @@ public class TwoSum {
         }
       }
     }
-    return null;
+
+    return new int[]{-1, -1};
   }
 
   /**
