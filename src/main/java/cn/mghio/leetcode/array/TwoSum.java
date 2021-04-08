@@ -15,9 +15,40 @@ public class TwoSum {
 
   public int[] twoSum(int[] nums, int target) {
     if (nums == null || nums.length < 2) {
-      return new int[]{0, 0};
+      return new int[]{-1, -1};
     }
 
+    // 方法一：暴力求解，没有用到有序数组的条件
+//    int[] result = violentSolution(nums, target);
+
+    // 方法二：二分查找法
+    int[] result = binarySearch(nums, target);
+
+    return result;
+  }
+
+  private int[] binarySearch(int[] nums, int target) {
+    for (int i = 0; i < nums.length; i++) {
+      int low = i + 1, high = nums.length - 1;
+      while (low <= high) {
+        int mid = (high - low) / 2 + low;
+        int subtractResult = target - nums[i];
+        if (nums[mid] == subtractResult) {
+          return new int[]{i + 1, mid + 1};
+        } else if (nums[mid] > subtractResult) {
+          high = mid - 1;
+        } else {
+          low = mid + 1;
+        }
+      }
+    }
+    return null;
+  }
+
+  /**
+   * 方法一：暴力求解
+   */
+  private int[] violentSolution(int[] nums, int target) {
     int len = nums.length;
     Map<Integer, Integer> map = new HashMap<>(len);
     int[] resultArr = new int[2];
@@ -34,7 +65,7 @@ public class TwoSum {
       }
     }
 
-    return new int[]{0, 0};
+    return new int[]{-1, -1};
   }
 
 }
