@@ -15,10 +15,9 @@ public class RemoveElement {
     }
 
     int slow = 0, fast = 0;
-    for (int i = 0; i < nums.length; i++) {
-      fast = i;
-      if (nums[i] != target) {
-        nums[slow++] = nums[i];
+    for (fast = 0; fast < nums.length; fast++) {
+      if (nums[fast] != target) {
+        nums[slow++] = nums[fast];
       }
     }
 
