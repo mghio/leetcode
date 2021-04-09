@@ -11,7 +11,7 @@ public class RemoveElement {
 
   public int removeElement(int[] nums, int target) {
     if (nums == null || nums.length == 0) {
-      return -1;
+      return 0;
     }
 
     int slow = 0, fast = 0;
