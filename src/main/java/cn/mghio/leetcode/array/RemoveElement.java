@@ -14,6 +14,37 @@ public class RemoveElement {
       return 0;
     }
 
+    // 方法一：双指针
+//    int slow = solution1(nums, target);
+
+    // 方法二：双指针 —— 当要删除的元素很少时
+    int slow = solution2(nums, target);
+
+    return slow;
+  }
+
+  /**
+   * 方法二：双指针 —— 当要删除的元素很少时
+   */
+  private int solution2(int[] nums, int target) {
+    int i = 0;
+    int n = nums.length;
+    while (i < n) {
+      if (nums[i] == target) {
+        nums[i] = nums[n - 1];
+        nums[n - 1] = target;
+        n--;
+      } else {
+        i++;
+      }
+    }
+    return n;
+  }
+
+  /**
+   * 方法一：双指针
+   */
+  private int solution1(int[] nums, int target) {
     int slow = 0, fast = 0;
     for (fast = 0; fast < nums.length; fast++) {
       if (nums[fast] != target) {
@@ -24,7 +55,6 @@ public class RemoveElement {
     for (int i = slow; i < nums.length; i++) {
       nums[i] = target;
     }
-
     return slow;
   }
 

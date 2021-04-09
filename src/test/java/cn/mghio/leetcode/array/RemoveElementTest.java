@@ -42,7 +42,7 @@ public class RemoveElementTest {
     int target = 2;
     int newLen = removeElement.removeElement(nums, target);
     int exceptedNewLen = 5;
-    int[] exceptedNewArr = new int[]{0, 1, 3, 0, 4, 2, 2, 2};
+    int[] exceptedNewArr = new int[]{0, 1, 4, 0, 3, 2, 2, 2};
     assertEquals(exceptedNewLen, newLen);
     assertArrayEquals(exceptedNewArr, nums);
   }
