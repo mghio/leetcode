@@ -31,9 +31,13 @@ public class MinSubArrayLen {
     return result;
   }
 
-  private int binarySearchWithPrefixSum(int target, int[] nums) {
-    int result = Integer.MAX_VALUE;
+  /**
+   * 方法二：前缀和 + 二分查找
+   * 时间复杂度：O(nlogn)，空间复杂度：O(n)
+   */
+  private int binarySearchWithPrefixSum(int s, int[] nums) {
     int n = nums.length;
+    int ans = Integer.MAX_VALUE;
     int[] sums = new int[n + 1];
     // 为了方便计算，令 size = n + 1
     // sums[0] = 0 意味着前 0 个元素的前缀和为 0
@@ -43,17 +47,16 @@ public class MinSubArrayLen {
       sums[i] = sums[i - 1] + nums[i - 1];
     }
     for (int i = 1; i <= n; i++) {
-      int s = target + nums[i - 1];
-      int bound = binarySearch(sums, s);
+      int target = s + sums[i - 1];
+      int bound = binarySearch(sums, target);
       if (bound < 0) {
         bound = -bound - 1;
       }
       if (bound <= n) {
-        result = Math.min(result, bound - (i - 1));
+        ans = Math.min(ans, bound - (i - 1));
       }
     }
-
-    return result == Integer.MAX_VALUE ? 0 : result;
+    return ans == Integer.MAX_VALUE ? 0 : ans;
   }
 
   /**
@@ -80,10 +83,11 @@ public class MinSubArrayLen {
   private int binarySearch(int[] nums, int target) {
     int low = 0, mid, high = nums.length - 1;
     while (low <= high) {
-      mid = (high - low) / 2 + low;
-      if (nums[mid] == target) {
+      mid = (high + low) >>> 1;
+      int midVal = nums[mid];
+      if (midVal == target) {
         return mid;
-      } else if (nums[mid] < target) {
+      } else if (midVal < target) {
         low = mid + 1;
       } else {
         high = mid - 1;
