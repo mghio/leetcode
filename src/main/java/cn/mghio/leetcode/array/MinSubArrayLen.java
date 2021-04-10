@@ -26,9 +26,31 @@ public class MinSubArrayLen {
 //    int result = violentSolution(target, nums);
 
     // 方法二：二分查找法 + 前缀和
-    int result = binarySearchWithPrefixSum(target, nums);
+//    int result = binarySearchWithPrefixSum(target, nums);
+
+    // 方法三：双指针法（滑动窗口）
+    int result = doublePoint(target, nums);
 
     return result;
+  }
+
+  private int doublePoint(int target, int[] nums) {
+    int result = Integer.MAX_VALUE;
+    int slow = 0;
+    int fast = 0;
+    int sum = 0;
+    int n = nums.length;
+    while (fast < n) {
+      sum += nums[fast];
+      while (sum >= target) {
+        result = Math.min(result, fast - slow + 1);
+        sum -= nums[slow];
+        slow++;
+      }
+      fast++;
+    }
+
+    return result == Integer.MAX_VALUE ? 0 : result;
   }
 
   /**
