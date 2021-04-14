@@ -22,7 +22,7 @@ public class PascalTriangle2Test {
     int numRows = 3;
     List<Integer> actualResult = pascalTriangle2.getRow(numRows);
     List<Integer> expectedResult = Arrays.asList(1, 3, 3, 1);
-    assertArrayEquals(actualResult.toArray(new Integer[0]), expectedResult.toArray(new Integer[0]));
+    assertArrayEquals(expectedResult.toArray(new Integer[0]), actualResult.toArray(new Integer[0]));
   }
 
 }
