@@ -21,6 +21,45 @@ public class ReverseWords2 {
       return s;
     }
 
+    // 方法一：原地解法
+    String result = solution1(s);
+
+    // 方法二：使用额外空间
+    return solution2(s);
+  }
+
+  /**
+   * 使用额外的空间
+   * 时间复杂度：O(N)，其中 N 为字符串的长度。原字符串中的每个字符都会在 O(1) 的时间内放入新字符串中。
+   * 空间复杂度：O(N)。我们开辟了与原字符串等大的空间。
+   */
+  private String solution2(String s) {
+    StringBuilder ret = new StringBuilder();
+    int length = s.length();
+    int i = 0;
+    while (i < length) {
+      int start = i;
+      while (i < length && s.charAt(i) != ' ') {
+        i++;
+      }
+      for (int j = start; j < i; j++) {
+        ret.append(s.charAt(start + i - 1 - j));
+      }
+      while (i < length && s.charAt(i) == ' ') {
+        i++;
+        ret.append(' ');
+      }
+    }
+    return ret.toString();
+  }
+
+  /**
+   * 方法一：原地解法
+   *
+   * 时间复杂度：O(N)，其中 N 为字符串的长度。原字符串中的每个字符都会在 O(1) 的时间内放入新字符串中。
+   * 空间复杂度：O(N)。我们开辟了与原字符串等大的空间。
+   */
+  private String solution1(String s) {
     String[] strings = s.split(" ");
     List<String> resultString = new ArrayList<>();
     for (String string : strings) {
