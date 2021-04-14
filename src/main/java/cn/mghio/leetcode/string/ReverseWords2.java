@@ -43,7 +43,8 @@ public class ReverseWords2 {
         i++;
       }
       for (int j = start; j < i; j++) {
-        ret.append(s.charAt(start + i - 1 - j));
+        int wordPerIndex = start + i - 1 - j;
+        ret.append(s.charAt(wordPerIndex));
       }
       while (i < length && s.charAt(i) == ' ') {
         i++;
