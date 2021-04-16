@@ -47,6 +47,12 @@ public class FindMin {
       }
 
       mid = (high - low) / 2 + low;
+
+      // 如果下标 low、high 和 mid 指向的三个数字相等，则只能顺序查找
+      if (nums[low] == nums[mid] && nums[mid] == nums[high]) {
+        return minInOrder(nums, low, high);
+      }
+
       if (nums[low] >= nums[high]) {
         low = mid;
       } else if (nums[low] <= nums[high]) {
@@ -55,6 +61,19 @@ public class FindMin {
     }
 
     return nums[mid];
+  }
+
+  /**
+   * 顺序查找
+   */
+  private int minInOrder(int[] nums, int low, int high) {
+    int result = nums[low];
+    for (int i = low + 1; i < high; i++) {
+      if (result > nums[i]) {
+        result = nums[i];
+      }
+    }
+    return result;
   }
 
   /**
