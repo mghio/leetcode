@@ -21,9 +21,46 @@ public class FindMin {
 
   public int findMin(int[] nums) {
     // 方法一：暴力解法
-    return violenceSolution(nums);
+//    int result = violenceSolution(nums);
+
+    // 方法二：双指针解法
+    int result = doublePoint(nums);
+
+    return result;
   }
 
+  /**
+   * 方法二：双指针解法
+   */
+  private int doublePoint(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+
+    int low = 0;
+    int high = nums.length - 1;
+    int mid = low;  // 这里赋值的原因是特例：把排序数组前面的 0 个元素搬到最后面，即数组本身，这也是一种旋转
+    while (nums[low] >= nums[high]) {
+      if (high - low == 1) {
+        mid = high;
+        break;
+      }
+
+      mid = (high - low) / 2 + low;
+      if (nums[low] >= nums[high]) {
+        low = mid;
+      } else if (nums[low] <= nums[high]) {
+        high = mid;
+      }
+    }
+
+    return nums[mid];
+  }
+
+  /**
+   * 方法一：暴力解法
+   * 时间复杂度：O(n)
+   */
   private int violenceSolution(int[] nums) {
     int min = nums[0];
     for (int i = 1; i < nums.length; i++) {
