@@ -6,37 +6,37 @@ package java.cn.mghio.leetcode.heap;
  * @author mghio
  * @since 2021-10-03
  */
-public class Heap {
+public class MaxHeap {
 
   /**
    * Store data starting from index 1
    */
-  private int[] a;
+  private final int[] a;
 
   /**
    * The maximum number of data that the heap can store
    */
-  private int n;
+  private final int n;
 
   /**
    * The number of data stored in the heap
    */
   private int count;
 
-  public Heap(int capacity) {
+  public MaxHeap(int capacity) {
     a = new int[capacity + 1];
     n = capacity;
     count = 0;
   }
 
-  public void buildHeap(int[] a, int n) {
+  public void buildMaxHeap(int[] a, int n) {
     for (int i = n / 2; i >= 1; --i) {
       heapify(a, n, i);
     }
   }
 
   public void sort(int[] a, int n) {
-    buildHeap(a, n);
+    buildMaxHeap(a, n);
     int k = n;
     while (k > 1) {
       swap(a, 1, k);
@@ -45,44 +45,62 @@ public class Heap {
     }
   }
 
+  /**
+   * insert data to the heap
+   *
+   * @param data the data value
+   */
   public void insert(int data) {
     if (count > n) {
       // heap is full
       return;
     }
 
-    ++count;
-    a[count] = data;
+    a[++count] = data;
     int i = count;
-    while (i / 2 > 0 && a[i] > a[i / 2]) {
+    while (a[i] > a[(i - 1) / 2]) {
       // Bottom-up heapify
-      swap(a, i, i / 2);
-      i = i / 2;
+      swap(a, i, (i - 1) / 2);
+      i = (i - 1) / 2;
     }
   }
 
+  /**
+   * remove the max data (top element) from the max heap.
+   */
   public void removeMax() {
     if (count == 0) {
       return;
     }
 
-    a[1] = a[count];
-    --count;
+    a[1] = a[count--];
     heapify(a, count, 1);
   }
 
+  /**
+   * Up-down heapify.
+   *
+   * @param a the number array
+   * @param n the heap size
+   * @param i the data index in array
+   */
   private void heapify(int[] a, int n, int i) {
     while (true) {
+      int l = i * 2 + 1;
+      int r = i * 2 + 2;
       int maxPos = i;
-      if (i * 2 < n && a[i] < a[i * 2]) {
-        maxPos = i * 2;
+
+      if (l < n && a[i] < a[l]) {
+        maxPos = l;
       }
-      if (i * 2 + 1 < n && a[maxPos] < a[i * 2 + 1]) {
-        maxPos = i * 2 + 1;
+      if (r < n && a[maxPos] < a[r]) {
+        maxPos = r;
       }
       if (maxPos == i) {
+        // already iteration leaf node index in the array
         break;
       }
+
       swap(a, i, maxPos);
       i = maxPos;
     }
