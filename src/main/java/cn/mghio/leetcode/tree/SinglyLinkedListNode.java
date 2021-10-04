@@ -1,7 +1,7 @@
 package java.cn.mghio.leetcode.tree;
 
 /**
- * Definition for singly-linked list nonde.
+ * Definition for singly-linked list node.
  *
  * @author mghio
  * @since 2021-10-01
