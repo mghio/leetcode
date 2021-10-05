@@ -30,7 +30,7 @@ public class MinHeap {
   }
 
   public void buildMinHeap(int[] a, int n) {
-    for (int i = n / 2; i >= 0; i--) {
+    for (int i = n / 2; i >= 1; i--) {
       heapify(a, n, i);
     }
   }
@@ -43,9 +43,9 @@ public class MinHeap {
 
     a[++count] = data;
     int i = count;
-    while (a[i] < a[(i - 1) / 2]) {
-      swap(a, i, (i - 1) / 2);
-      i = (i - 1) / 2;
+    while (a[i] < a[i / 2]) {
+      swap(a, i, i / 2);
+      i = i / 2;
     }
   }
 
@@ -70,14 +70,14 @@ public class MinHeap {
    */
   private void heapify(int[] a, int n, int i) {
     while (true) {
-      int l = i * 2 + 1;
-      int r = i * 2 + 2;
+      int l = i * 2;
+      int r = i * 2 + 1;
       int minPos = i;
 
-      if (l < n && a[i] > a[l]) {
+      if (l <= n && a[i] > a[l]) {
         minPos = l;
       }
-      if (r < n && a[minPos] > a[r]) {
+      if (r <= n && a[minPos] > a[r]) {
         minPos = r;
       }
       if (minPos == i) {
