@@ -21,8 +21,8 @@ public class MergeTwoSinglyLinkedList {
       return l1 == null ? l2 : l1;
     }
 
-    SinglyNode head = new SinglyNode(0);
-    SinglyNode tail = head;
+    SinglyNode dummy = new SinglyNode(0);
+    SinglyNode tail = dummy;
     SinglyNode aPtr = l1;
     SinglyNode bPtr = l2;
 
@@ -38,7 +38,7 @@ public class MergeTwoSinglyLinkedList {
     }
 
     tail.next = aPtr == null ? bPtr : aPtr;
-    return head.next;
+    return dummy.next;
   }
 
 }
