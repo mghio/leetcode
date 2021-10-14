@@ -14,15 +14,33 @@ public class ReverseList {
    * @param head the head node
    * @return the reversed singly-linked list
    */
-  public SinglyNode reverseList(SinglyNode head) {
+  public SinglyNode reverseListRecursion(SinglyNode head) {
     if (head == null || head.next == null) {
       return head;
     }
 
-    SinglyNode last = reverseList(head.next);
+    SinglyNode last = reverseListRecursion(head.next);
     head.next.next = head;
     head.next = null;
     return last;
+  }
+
+  /**
+   * Reverse singly-linked list
+   *
+   * @param head the head node
+   * @return the reversed singly-linked list
+   */
+  public SinglyNode reverseListIteration(SinglyNode head) {
+    SinglyNode pre = null;
+    SinglyNode cur = head;
+    while (cur != null) {
+      SinglyNode next = cur.next;
+      cur.next = pre;
+      pre = cur;
+      cur = next;
+    }
+    return pre;
   }
 
 }
