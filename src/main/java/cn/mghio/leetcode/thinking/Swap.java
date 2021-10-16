@@ -9,15 +9,39 @@ package java.cn.mghio.leetcode.thinking;
 public class Swap {
 
   /**
-   * swap the values of  the two variables use arithmetic.
+   * swap the values of the two variables use arithmetic.
    *
-   * @param a the a variable
-   * @param b the b variable
+   * @param numbers the numbers array
+   * @return the swapped numbers array
    */
-  public void swapUseArithmetic(int a, int b) {
-    a = a + b;
-    b = a - b;
-    a = a - b;
+  public int[] swapNumbersUseArithmetic(int[] numbers) {
+    if (numbers == null || numbers.length < 2) {
+      return numbers;
+    }
+
+    numbers[0] = numbers[0] + numbers[1];
+    numbers[1] = numbers[0] - numbers[1];
+    numbers[0] = numbers[0] - numbers[1];
+    return numbers;
+  }
+
+  /**
+   * swap the values of the two variables use XOR.
+   *
+   * @param numbers the numbers array
+   * @return the swapped numbers array
+   */
+  public int[] swapNumbersUseXOR(int[] numbers) {
+    if (numbers == null || numbers.length < 2) {
+      return numbers;
+    }
+
+    numbers[0] = numbers[0] ^ numbers[1];
+    // numbers[0] ^ numbers[1] = numbers[0] ^ numbers[1] ^ numbers[1] = numbers[0]
+    numbers[1] = numbers[0] ^ numbers[1];
+    // numbers[0] ^ numbers[1] = numbers[0] ^ numbers[1] ^ numbers[0] = numbers[1]
+    numbers[0] = numbers[0] ^ numbers[1];
+    return numbers;
   }
 
 }
