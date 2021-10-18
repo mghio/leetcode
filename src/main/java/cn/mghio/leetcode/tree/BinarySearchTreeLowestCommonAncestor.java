@@ -10,7 +10,7 @@ import java.util.List;
  * @author mghio
  * @since 2021-10-18
  */
-public class LowestCommonAncestor {
+public class BinarySearchTreeLowestCommonAncestor {
 
   /**
    * Find the lowest common ancestor of two given nodes int th binary search tree(BST).
