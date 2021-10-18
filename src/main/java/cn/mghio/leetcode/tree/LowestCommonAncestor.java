@@ -40,7 +40,34 @@ public class LowestCommonAncestor {
     return ancestor;
   }
 
-  public List<TreeNode> getPath(TreeNode root, TreeNode target) {
+  /**
+   * Find the lowest common ancestor of two given nodes int th binary search tree(BST).
+   *
+   * @param root the root node
+   * @param p the node
+   * @param q the other node
+   * @return the lowest common ancestor
+   */
+  public TreeNode lowestCommonAncestorUseIterationOne(TreeNode root, TreeNode p, TreeNode q) {
+    if (root == null || p == null || q == null) {
+      return null;
+    }
+
+    TreeNode ancestor = root;
+    while (true) {
+      if (ancestor.val > p.val && ancestor.val > q.val) {
+        ancestor = ancestor.left;
+      } else if (ancestor.val < p.val && ancestor.val < q.val) {
+        ancestor = ancestor.right;
+      } else {
+        break;
+      }
+    }
+
+    return ancestor;
+  }
+
+  private List<TreeNode> getPath(TreeNode root, TreeNode target) {
     List<TreeNode> paths = new ArrayList<>();
     TreeNode node = root;
     while (node.val != target.val) {
