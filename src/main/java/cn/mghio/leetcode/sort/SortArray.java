@@ -69,4 +69,55 @@ public class SortArray {
     return nums;
   }
 
+  private int[] tmp;
+
+  /**
+   * Sort the given array in ascending order.
+   *
+   * @param nums the source array
+   * @return the sorted array
+   */
+  public int[] mergeSort(int[] nums) {
+    if (nums == null || nums.length < 2) {
+      return null;
+    }
+
+    int len = nums.length;
+    tmp = new int[len];
+    mergeSort(nums, 0, len - 1);
+    return nums;
+  }
+
+  private void mergeSort(int[] nums, int l, int r) {
+    if (l >= r) {
+      return;
+    }
+
+    int mid = l + ((r - l) >> 1);
+    mergeSort(nums, l, mid);
+    mergeSort(nums, mid + 1, r);
+
+    int i = l, j = mid + 1;
+    int index = 0;
+    while (i <= mid && j <= r) {
+      if (nums[i] <= nums[j]) {
+        tmp[index++] = nums[i++];
+      } else {
+        tmp[index++] = nums[j++];
+      }
+    }
+
+    while (i <= mid) {
+      tmp[index++] = nums[i++];
+    }
+
+    while (j <= r) {
+      tmp[index++] = nums[j++];
+    }
+
+    if (r - l + 1 >= 0) {
+      System.arraycopy(tmp, 0, nums, l, r - l + 1);
+    }
+  }
+
 }
