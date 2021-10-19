@@ -39,4 +39,34 @@ public class SortArray {
     return nums;
   }
 
+  /**
+   * Sort the given array in ascending order.
+   *
+   * @param nums the source array
+   * @return the sorted array
+   */
+  public int[] insertSort(int[] nums) {
+    if (nums == null || nums.length < 2) {
+      return nums;
+    }
+
+    int n = nums.length;
+    for (int i = 1; i < n; i++) {
+      int value = nums[i];
+      int j = i - 1;
+      // find insert index in 0 ... i - 1
+      for (; j >= 0; j--) {
+        if (nums[j] > value) {
+          nums[j + 1] = nums[j];
+        } else {
+          break;
+        }
+      }
+      // insert
+      nums[j + 1] = nums[j];
+    }
+
+    return nums;
+  }
+
 }
