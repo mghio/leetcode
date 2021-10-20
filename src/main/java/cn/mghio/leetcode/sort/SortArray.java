@@ -88,6 +88,50 @@ public class SortArray {
     return nums;
   }
 
+  /**
+   * Sort the given array in ascending order.
+   *
+   * @param nums the source array
+   * @return the sorted array
+   */
+  public int[] quickSort(int[] nums) {
+    if (nums == null || nums.length < 2) {
+      return null;
+    }
+
+    quickSort(nums, 0, nums.length - 1);
+    return nums;
+  }
+
+  private void quickSort(int[] nums, int l, int r) {
+    if (l >= r) {
+      return;
+    }
+
+    int q = partition(nums, l, r);
+    quickSort(nums, l, q - 1);
+    quickSort(nums, q + 1, r);
+  }
+
+  private int partition(int[] nums, int l, int r) {
+    int pivot = nums[r];
+    int i = l;
+    for (int j = l; j <= r - 1; j++) {
+      if (nums[j] < pivot) {
+        swap(nums, i, j);
+        i++;
+      }
+    }
+    swap(nums, i, r);
+    return i;
+  }
+
+  private void swap(int[] nums, int srcIndex, int destIndex) {
+    int tmp = nums[srcIndex];
+    nums[destIndex] = tmp;
+    nums[srcIndex] = tmp;
+  }
+
   private void mergeSort(int[] nums, int l, int r) {
     if (l >= r) {
       return;
