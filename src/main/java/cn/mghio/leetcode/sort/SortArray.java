@@ -27,7 +27,7 @@ public class SortArray {
         if (nums[j] < nums[j + 1]) {
           int tmp = nums[j];
           nums[j] = nums[j + 1];
-          nums[j  +1] = tmp;
+          nums[j + 1] = tmp;
           flag = true;
         }
       }
@@ -100,6 +100,30 @@ public class SortArray {
     }
 
     quickSort(nums, 0, nums.length - 1);
+    return nums;
+  }
+
+  /**
+   * Sort the given array in ascending order.
+   *
+   * @param nums the source array
+   * @return the sorted array
+   */
+  public int[] selectionSort(int[] nums) {
+    if (nums == null || nums.length < 2) {
+      return nums;
+    }
+
+    int len = nums.length;
+    for (int i = 0; i < len - 1; i++) {
+      int minIndex = i;
+      for (int j = i + 1; j < len; j++) {
+        if (nums[j] < nums[minIndex]) {
+          minIndex = j;
+        }
+      }
+      swap(nums, i, minIndex);
+    }
     return nums;
   }
 
