@@ -22,8 +22,8 @@ public class SingleNumberII {
    * @param nums the array
    * @return the number
    */
-  public int singleNumber(int[] nums) {
-    if (nums == null || nums.length < 3) {
+  public int singleNumberSolution1(int[] nums) {
+    if (nums == null || nums.length < 1) {
       return 0;
     }
 
@@ -40,6 +40,30 @@ public class SingleNumberII {
     }
 
     return 0;
+  }
+
+  /**
+   * Find the single element and return it.
+   *
+   * @param nums the array
+   * @return the number
+   */
+  public int singleNumberSolution2(int[] nums) {
+    if (nums == null || nums.length < 1) {
+      return 0;
+    }
+
+    int ans = 0;
+    for (int i = 0; i < 32; i++) {
+      int total = 0;
+      for (int num : nums) {
+        total += ((num >> i) & 1);
+      }
+      if (total % 3 != 0) {
+        ans |= (1 << i);
+      }
+    }
+    return ans;
   }
 
 }
