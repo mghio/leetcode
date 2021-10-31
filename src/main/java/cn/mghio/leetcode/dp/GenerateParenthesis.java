@@ -24,6 +24,41 @@ public class GenerateParenthesis {
     return ans;
   }
 
+  /**
+   * Generate all combination of well-formed prentheses.
+   *
+   * @param n the n pairs of parentheses
+   * @return the all combinations
+   */
+  public List<String> generateParenthesisDFS(int n) {
+    List<String> ans = new ArrayList<>();
+    if (n == 0) {
+      return ans;
+    }
+
+    dfs("", n, n, ans);
+    return ans;
+  }
+
+  private void dfs(String curStr, int left, int right, List<String> ans) {
+    if (left == 0 && right == 0) {
+      ans.add(curStr);
+      return;
+    }
+
+    if (left > right) {
+      return;
+    }
+
+    if (left > 0) {
+      dfs(curStr + "(", left - 1, right, ans);
+    }
+
+    if (right > 0) {
+      dfs(curStr + " )", left, right - 1, ans);
+    }
+  }
+
   private void generateAll(char[] current, int pos, List<String> ans) {
     if (pos == current.length) {
       if (valid(current)) {
