@@ -26,8 +26,7 @@ public class TranslateNum {
     for (int i = 0; i < src.length(); i++) {
       p = q;
       q = r;
-      r = 0;
-      r = r + q;
+      r = q;
       if (i == 0) {
         continue;
       }
