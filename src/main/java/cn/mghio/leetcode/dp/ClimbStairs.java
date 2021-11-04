@@ -32,4 +32,24 @@ public class ClimbStairs {
     return climbStairsSolution1(n - 1) + climbStairsSolution1(n - 2);
   }
 
+  /**
+   * Return how many distinct ways can you climb to the top
+   *
+   * @param n the n
+   * @return the result
+   */
+  public int climbStairsSolution2(int n) {
+    int p = 0;
+    int q = 0;
+    int r = 1;
+
+    for (int i = 1; i <= n; i++) {
+      p = q;
+      q = r;
+      r = p + q;
+    }
+
+    return r;
+  }
+
 }
