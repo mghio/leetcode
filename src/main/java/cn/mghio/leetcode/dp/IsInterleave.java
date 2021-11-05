@@ -49,4 +49,39 @@ public class IsInterleave {
     return ans[n][m];
   }
 
+  /**
+   * Given strings s1, s2, and s3, find whether s3 is formed by an interleaving of s1 and s2.
+   *
+   * @param s1 the string 1
+   * @param s2 the string 2
+   * @param s3 the string 3
+   * @return the result
+   */
+  public boolean isInterleaveSolution2(String s1, String s2, String s3) {
+    int n = s1.length();
+    int m = s2.length();
+    int t = s3.length();
+
+    if (n + m != t) {
+      return false;
+    }
+
+    boolean[] ans = new boolean[m + 1];
+    ans[0] = false;
+
+    for (int i = 0; i <= n; i++) {
+      for (int j = 0; j <= m; j++) {
+        int p = i + j - 1;
+        if (i > 0) {
+          ans[j] = ans[j] && s1.charAt(i - 1) == s3.charAt(p);
+        }
+        if (j > 0) {
+          ans[j] = ans[j] || (ans[j - 1] && s2.charAt(j - 1) == s2.charAt(p));
+        }
+      }
+    }
+
+    return ans[m];
+  }
+
 }
