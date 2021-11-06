@@ -24,7 +24,7 @@ public class MaxProfit {
    * @return the maximum profit
    */
   public int maxProfitSolution1(int[] prices) {
-    if (prices == null || prices.length < 1) {
+    if (prices == null || prices.length < 2) {
       return 0;
     }
 
@@ -43,6 +43,35 @@ public class MaxProfit {
     }
 
     return maxProfit;
+  }
+
+  /**
+   * Return the maximum profit you can achieve from this transaction, if you cannot achieve any
+   * profit, return 0.
+   *
+   * @param prices the prices array
+   * @return the maximum profit
+   */
+  public int maxProfitSolution2(int[] prices) {
+    if (prices == null || prices.length < 2) {
+      return 0;
+    }
+
+    int min = prices[0];
+    int maxProfit = prices[1] - min;
+    int n = prices.length;
+
+    for (int i = 2; i < n; i++) {
+      if (prices[i - 1] < min) {
+        min = prices[i - 1];
+      }
+      int curProfit = prices[i] - min;
+      if (curProfit > maxProfit) {
+        maxProfit = curProfit;
+      }
+    }
+
+    return Math.max(maxProfit, 0);
   }
 
 }
