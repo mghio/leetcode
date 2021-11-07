@@ -38,4 +38,28 @@ public class MaxProfit2 {
     return dp[n - 1][0];
   }
 
+  /**
+   * Find and return the maximum profit you can achieve.
+   *
+   * @param prices the prices array
+   * @return the maximum profit
+   */
+  public int maxProfitSolution2(int[] prices) {
+    if (prices == null || prices.length < 2) {
+      return 0;
+    }
+
+    int n = prices.length;
+    int dp0 = 0;
+    int dp1 = -prices[0];
+
+    for (int i = 1; i < n; i++) {
+      int curPrice = prices[i];
+      dp0 = Math.max(dp0, dp1 + curPrice);
+      dp1 = Math.max(dp0 - curPrice, dp1);
+    }
+
+    return dp0;
+  }
+
 }
