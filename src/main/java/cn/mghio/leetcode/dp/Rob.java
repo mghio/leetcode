@@ -20,7 +20,7 @@ public class Rob {
    * @param nums the integer array
    * @return the maximum amount of money you can rob tonight without alert the police
    */
-  public int rob(int[] nums) {
+  public int robSolution1(int[] nums) {
     if (nums == null || nums.length == 0) {
       return 0;
     }
@@ -37,6 +37,32 @@ public class Rob {
       dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
     }
     return dp[n - 1];
+  }
+
+  /**
+   * Return the maximum amount of money you can rob tonight without alerting the police.
+   *
+   * @param nums the integer array
+   * @return the maximum amount of money you can rob tonight without alert the police
+   */
+  public int robSolution2(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+
+    if (nums.length < 2) {
+      return nums[0];
+    }
+
+    int first = nums[0];
+    int second = Math.max(nums[0], nums[1]);
+    for (int i = 2; i < nums.length; i++) {
+      int tmp = second;
+      second = Math.max(second, first + nums[i]);
+      first = tmp;
+    }
+
+    return second;
   }
 
 }
