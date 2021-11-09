@@ -12,7 +12,7 @@ package java.cn.mghio.leetcode.dp;
  * @author mghio
  * @since 2021-11-08
  */
-public class Rob {
+public class RobI {
 
   /**
    * Return the maximum amount of money you can rob tonight without alerting the police.
