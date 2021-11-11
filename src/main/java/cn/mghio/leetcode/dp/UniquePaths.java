@@ -1,5 +1,7 @@
 package java.cn.mghio.leetcode.dp;
 
+import java.util.Arrays;
+
 /**
  * A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).
  *
@@ -20,7 +22,7 @@ public class UniquePaths {
    * @param n the n of grid
    * @return the unique paths count
    */
-  public int uniquePaths(int m, int n) {
+  public int uniquePathsSolution1(int m, int n) {
     int[][] f = new int[m][n];
 
     for (int i = 0; i < m; i++) {
@@ -38,6 +40,25 @@ public class UniquePaths {
     }
 
     return f[m - 1][n - 1];
+  }
+
+  /**
+   * Return how many possible unique paths are there.
+   *
+   * @param m the m of grid
+   * @param n the n of grid
+   * @return the unique paths count
+   */
+  public int uniquePathsSolution2(int m, int n) {
+    int[] cur = new int[n];
+    Arrays.fill(cur, 1);
+
+    for (int i = 1; i < m; i++) {
+      for (int j = 1; j < n; j++) {
+        cur[j] += cur[j - 1];
+      }
+    }
+    return cur[n - 1];
   }
 
 }
