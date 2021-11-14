@@ -52,4 +52,48 @@ public class SpiralOrder {
     return ans;
   }
 
+  /**
+   * Return all elements of the matrix in spiral order.
+   *
+   * @param matrix the matrix
+   * @return the elements of the matrix in spiral order
+   */
+  public List<Integer> spiralOrderSolution2(int[][] matrix) {
+    if (matrix == null || matrix.length < 1 || matrix[0].length < 1) {
+      return new ArrayList<>();
+    }
+
+    int rows = matrix.length;
+    int columns = matrix[0].length;
+    List<Integer> ans = new ArrayList<>();
+    int left = 0;
+    int right = columns - 1;
+    int top = 0;
+    int bottom = rows - 1;
+    while (left <= right && top <= bottom) {
+      for (int column = left; column <= right; column++) {
+        ans.add(matrix[top][column]);
+      }
+
+      for (int row = top + 1; row <= bottom; row++) {
+        ans.add(matrix[row][right]);
+      }
+
+      if (left < right && top < bottom) {
+        for (int column = right - 1; column > left; column--) {
+          ans.add(matrix[bottom][column]);
+        }
+        for (int row = bottom; row > top; row--) {
+          ans.add(matrix[row][left]);
+        }
+      }
+
+      left++;
+      right--;
+      top++;
+      bottom--;
+    }
+    return ans;
+  }
+
 }
