@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.list;
+package cn.mghio.leetcode.list;
 
 /**
  * Given the head of a singly linked list, return the middle node of the linked list.

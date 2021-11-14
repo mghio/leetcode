@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.thinking;
+package cn.mghio.leetcode.thinking;
 
 /**
  * Seek 1+2+...+n. It is required that keywords such as multiplication and division, for, while, if,

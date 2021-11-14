@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.dp;
+package cn.mghio.leetcode.dp;
 
 /**
  * You are climbing a staircase. It takes n steps to reach the top.

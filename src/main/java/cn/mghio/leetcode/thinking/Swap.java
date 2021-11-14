@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.thinking;
+package cn.mghio.leetcode.thinking;
 
 /**
  * Do not use the new variable, swap the values of the two variables.

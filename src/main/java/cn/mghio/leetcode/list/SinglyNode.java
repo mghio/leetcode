@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.list;
+package cn.mghio.leetcode.list;
 
 /**
  * Definition for singly-linked list.

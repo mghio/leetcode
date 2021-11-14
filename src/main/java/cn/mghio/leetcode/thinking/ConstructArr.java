@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.thinking;
+package cn.mghio.leetcode.thinking;
 
 /**
  * Given an array A[0,1,…,n-1], please construct an array B[0,1,…,n-1], where the value of B[i] is

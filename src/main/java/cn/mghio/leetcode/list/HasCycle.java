@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.list;
+package cn.mghio.leetcode.list;
 
 /**
  * Determine whether the linked list contains a cycle.

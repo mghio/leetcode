@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.dp;
+package cn.mghio.leetcode.dp;
 
 /**
  * Given a non-empty array nums containing only positive integers, find if the array can be

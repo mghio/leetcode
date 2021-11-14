@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.dp;
+package cn.mghio.leetcode.dp;
 
 /**
  * Given a string containing just the characters '(' and ')', find the length of the longest valid

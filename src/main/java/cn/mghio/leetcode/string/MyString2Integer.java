@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.string;
+package cn.mghio.leetcode.string;
 
 /**
  * Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer

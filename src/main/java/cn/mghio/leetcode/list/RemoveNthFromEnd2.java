@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.list;
+package cn.mghio.leetcode.list;
 
 import java.util.Deque;
 import java.util.LinkedList;

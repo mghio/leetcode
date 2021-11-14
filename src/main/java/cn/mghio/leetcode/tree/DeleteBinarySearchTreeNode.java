@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.tree;
+package cn.mghio.leetcode.tree;
 
 /**
  * Given a root node reference of a BST and a key, delete the node with the given key in the BST.

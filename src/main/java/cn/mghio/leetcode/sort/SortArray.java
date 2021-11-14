@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.sort;
+package cn.mghio.leetcode.sort;
 
 /**
  * Given an array of integers nums, sort the array in ascending order.

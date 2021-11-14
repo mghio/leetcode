@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.dp;
+package cn.mghio.leetcode.dp;
 
 import java.util.HashMap;
 import java.util.Map;

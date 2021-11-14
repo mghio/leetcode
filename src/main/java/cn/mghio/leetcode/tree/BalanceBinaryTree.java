@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.tree;
+package cn.mghio.leetcode.tree;
 
 /**
  * Given a binary tree, determine if it is height-balanced.

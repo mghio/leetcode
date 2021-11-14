@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.sort;
+package cn.mghio.leetcode.sort;
 
 import java.util.ArrayList;
 import java.util.Arrays;

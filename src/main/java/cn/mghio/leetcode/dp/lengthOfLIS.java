@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.dp;
+package cn.mghio.leetcode.dp;
 
 /**
  * Given an integer array nums, return the length of the longest strictly increasing subsequence.

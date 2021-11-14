@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.array;
+package cn.mghio.leetcode.array;
 
 /**
  * There is a number in the array that appears more than half the length of the array. Please find

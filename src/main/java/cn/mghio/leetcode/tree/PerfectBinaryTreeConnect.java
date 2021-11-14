@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.tree;
+package cn.mghio.leetcode.tree;
 
 /**
  * You are given a perfect binary tree where all leaves are on the same level, and every parent has

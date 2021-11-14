@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.tree;
+package cn.mghio.leetcode.tree;
 
 /**
  * Given the head of a singly linked list where elements are sorted in ascending order, convert it

@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.dp;
+package cn.mghio.leetcode.dp;
 
 /**
  * Given a number, we translate it into a string according to the following rules: 0 is translated

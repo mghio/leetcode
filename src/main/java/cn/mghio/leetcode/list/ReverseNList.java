@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.list;
+package cn.mghio.leetcode.list;
 
 /**
  * Given N, reverse N first node, then return the head node.

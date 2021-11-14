@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.dp;
+package cn.mghio.leetcode.dp;
 
 /**
  * You are given an integer array prices where prices[i] is the price of a given stock on the ith

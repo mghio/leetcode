@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.backtracking;
+package cn.mghio.leetcode.backtracking;
 
 import java.util.ArrayList;
 import java.util.Arrays;

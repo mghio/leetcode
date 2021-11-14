@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.tree;
+package cn.mghio.leetcode.tree;
 
 /**
  * Given a binary tree, Populate each next pointer to point to its next right node. If there is no

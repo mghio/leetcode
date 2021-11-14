@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.list;
+package cn.mghio.leetcode.list;
 
 /**
  * Input a linked list, and output the kth node from the bottom of the linked list. In order to

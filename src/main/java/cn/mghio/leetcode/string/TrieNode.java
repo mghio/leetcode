@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.string;
+package cn.mghio.leetcode.string;
 
 /**
  * Trie Node.

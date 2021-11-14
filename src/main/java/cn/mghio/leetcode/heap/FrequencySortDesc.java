@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.heap;
+package cn.mghio.leetcode.heap;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.thinking;
+package cn.mghio.leetcode.thinking;
 
 /**
  * Write a function to find the sum of two integers. The four arithmetic operations must not be used

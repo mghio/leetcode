@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.array;
+package cn.mghio.leetcode.array;
 
 /**
  * @author mghio

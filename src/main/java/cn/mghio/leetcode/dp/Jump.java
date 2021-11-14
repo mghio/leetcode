@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.dp;
+package cn.mghio.leetcode.dp;
 
 /**
  * Given an array of non-negative integers nums, you are initially positioned at the first index of

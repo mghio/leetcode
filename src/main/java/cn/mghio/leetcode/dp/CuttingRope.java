@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.dp;
+package cn.mghio.leetcode.dp;
 
 /**
  * Give you a rope of length n, please cut the rope into m segments of integer length (m and n are

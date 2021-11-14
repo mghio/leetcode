@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.array;
+package cn.mghio.leetcode.array;
 
 /**
  * Except for two numbers in an integer array nums, other numbers appear twice. Please write a

@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.list;
+package cn.mghio.leetcode.list;
 
 /**
  * Given the head of a linked list, return the node where the cycle begins. If there is no cycle,

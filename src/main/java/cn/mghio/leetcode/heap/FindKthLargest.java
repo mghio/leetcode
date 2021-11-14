@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.heap;
+package cn.mghio.leetcode.heap;
 
 /**
  * Given an integer array nums and an integer k, return the kth the largest element in the array.

@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.tree;
+package cn.mghio.leetcode.tree;
 
 /**
  * Given two integer arrays inorder and postorder where inorder is the inorder traversal of a binary

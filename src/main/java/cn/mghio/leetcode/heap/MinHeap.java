@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.heap;
+package cn.mghio.leetcode.heap;
 
 /**
  * The heap data struct.

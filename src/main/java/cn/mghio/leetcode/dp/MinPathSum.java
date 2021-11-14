@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.dp;
+package cn.mghio.leetcode.dp;
 
 /**
  * Given an m x n grid filled with non-negative numbers, find a path from top left to bottom right,

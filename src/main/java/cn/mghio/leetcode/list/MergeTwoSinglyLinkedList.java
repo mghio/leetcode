@@ -1,4 +1,4 @@
-package java.cn.mghio.leetcode.list;
+package cn.mghio.leetcode.list;
 
 /**
  * Merge two sorted linked lists and return it as a sorted list. The list should be made by splicing
