@@ -34,12 +34,42 @@ public class Intersection {
       }
     }
 
+    return set2IntArray(ansSet);
+  }
+
+  /**
+   * Return an array of their intersection.
+   *
+   * @param nums1 the array
+   * @param nums2 the other array
+   * @return the intersection
+   */
+  public int[] intersectionSolution2(int[] nums1, int[] nums2) {
+    if (nums1 == null || nums2 == null || nums1.length < 1 || nums2.length < 1) {
+      return new int[]{};
+    }
+
+    Set<Integer> num1Set = new HashSet<>();
+    for (int num : nums1) {
+      num1Set.add(num);
+    }
+
+    Set<Integer> ansSet = new HashSet<>();
+    for (int num : nums2) {
+      if (num1Set.contains(num)) {
+        ansSet.add(num);
+      }
+    }
+
+    return set2IntArray(ansSet);
+  }
+
+  private int[] set2IntArray(Set<Integer> ansSet) {
     int[] ans = new int[ansSet.size()];
     int index = 0;
     for (Integer num : ansSet) {
       ans[index++] = num;
     }
-
     return ans;
   }
 
