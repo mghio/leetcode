@@ -1,7 +1,9 @@
 package cn.mghio.leetcode.array;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Given two integer arrays nums1 and nums2, return an array of their intersection. Each element in
@@ -20,7 +22,7 @@ public class Intersection {
    * @return the intersection
    */
   public int[] intersectionSolution1(int[] num1, int[] num2) {
-    if (num1 == null || num2 == null || num1.length < 1 || num2.length < 1) {
+    if (preCheck(num1, num2)) {
       return new int[]{};
     }
 
@@ -45,7 +47,7 @@ public class Intersection {
    * @return the intersection
    */
   public int[] intersectionSolution2(int[] nums1, int[] nums2) {
-    if (nums1 == null || nums2 == null || nums1.length < 1 || nums2.length < 1) {
+    if (preCheck(nums1, nums2)) {
       return new int[]{};
     }
 
@@ -62,6 +64,29 @@ public class Intersection {
     }
 
     return set2IntArray(ansSet);
+  }
+
+  /**
+   * Return an array of their intersection.
+   *
+   * @param nums1 the array
+   * @param nums2 the other array
+   * @return the intersection
+   */
+  public int[] intersectionSolution3(int[] nums1, int[] nums2) {
+    if (preCheck(nums1, nums2)) {
+      return new int[]{};
+    }
+
+    Set<Integer> num1Set = Arrays.stream(nums1).boxed().collect(Collectors.toSet());
+    return Arrays.stream(nums2).distinct().filter(num1Set::contains).toArray();
+  }
+
+  private boolean preCheck(int[] nums1, int[] nums2) {
+    if (nums1 == null || nums2 == null || nums1.length < 1 || nums2.length < 1) {
+      return true;
+    }
+    return false;
   }
 
   private int[] set2IntArray(Set<Integer> ansSet) {
