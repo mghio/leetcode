@@ -1,6 +1,7 @@
 package cn.mghio.leetcode.array;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -25,8 +26,9 @@ public class IntersectionII {
    * @return the array of their intersection
    */
   public int[] intersectionSolution1(int[] nums1, int[] nums2) {
-    if (nums1 == null || nums1.length < 1 || nums2 == null || nums2.length < 1) {
-      return new int[]{};
+    int[] x = preCheck(nums1, nums2);
+    if (x != null) {
+      return x;
     }
 
     Map<Integer, Integer> num1CntMap = new HashMap<>();
@@ -52,6 +54,53 @@ public class IntersectionII {
     }
 
     return ans;
+  }
+
+  /**
+   * Given two integer arrays nums1 and nums2, return an array of their intersection.
+   *
+   * @param nums1 the array
+   * @param nums2 the other array
+   * @return the array of their intersection
+   */
+  public int[] intersectionSolution2(int[] nums1, int[] nums2) {
+    int[] x = preCheck(nums1, nums2);
+    if (x != null) {
+      return x;
+    }
+
+    if (nums1.length > nums2.length) {
+      return intersectionSolution2(nums2, nums1);
+    }
+
+    Map<Integer, Integer> numCntMap = new HashMap<>();
+    for (int num : nums1) {
+      numCntMap.put(num, numCntMap.getOrDefault(num, 0) + 1);
+    }
+
+    int[] ans = new int[nums1.length];
+    int index = 0;
+    for (int num : nums2) {
+      int count = numCntMap.getOrDefault(num, 0);
+      if (count > 0) {
+        ans[index++] = num;
+        count--;
+        if (count > 0) {
+          numCntMap.put(num, count);
+        } else {
+          numCntMap.remove(num);
+        }
+      }
+    }
+
+    return Arrays.copyOfRange(ans, 0, index);
+  }
+
+  private int[] preCheck(int[] nums1, int[] nums2) {
+    if (nums1 == null || nums1.length < 1 || nums2 == null || nums2.length < 1) {
+      return new int[]{};
+    }
+    return null;
   }
 
 }
