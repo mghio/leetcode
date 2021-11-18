@@ -42,7 +42,8 @@ public class IntersectionII {
     List<Integer> ansList = new ArrayList<>();
     for (int num : nums2) {
       num2CntMap.put(num, num2CntMap.getOrDefault(num, 0) + 1);
-      if (nums1Set.contains(num) && num2CntMap.getOrDefault(num, 0) <= num1CntMap.getOrDefault(num, 1)) {
+      if (nums1Set.contains(num) && num2CntMap.getOrDefault(num, 0) <= num1CntMap.getOrDefault(num,
+          1)) {
         ansList.add(num);
       }
     }
@@ -90,6 +91,43 @@ public class IntersectionII {
         } else {
           numCntMap.remove(num);
         }
+      }
+    }
+
+    return Arrays.copyOfRange(ans, 0, index);
+  }
+
+  /**
+   * Given two integer arrays nums1 and nums2, return an array of their intersection.
+   *
+   * @param nums1 the array
+   * @param nums2 the other array
+   * @return the array of their intersection
+   */
+  public int[] intersectionSolution3(int[] nums1, int[] nums2) {
+    int[] x = preCheck(nums1, nums2);
+    if (x != null) {
+      return x;
+    }
+
+    Arrays.sort(nums1);
+    Arrays.sort(nums2);
+
+    int ptr1 = 0;
+    int ptr2 = 0;
+    int index = 0;
+    int[] ans = new int[Math.min(nums1.length, nums2.length)];
+    while (ptr1 < nums1.length && ptr2 < nums2.length) {
+      int num1 = nums1[ptr1];
+      int num2 = nums2[ptr2];
+      if (num1 < num2) {
+        ptr1++;
+      } else if (num1 > num2) {
+        ptr2++;
+      } else {
+        ans[index++] = num1;
+        ptr1++;
+        ptr2++;
       }
     }
 
