@@ -83,10 +83,7 @@ public class Intersection {
   }
 
   private boolean preCheck(int[] nums1, int[] nums2) {
-    if (nums1 == null || nums2 == null || nums1.length < 1 || nums2.length < 1) {
-      return true;
-    }
-    return false;
+    return nums1 == null || nums2 == null || nums1.length < 1 || nums2.length < 1;
   }
 
   private int[] set2IntArray(Set<Integer> ansSet) {
