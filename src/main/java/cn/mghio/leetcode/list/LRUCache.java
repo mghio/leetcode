@@ -44,7 +44,7 @@ public class LRUCache {
       return;
     }
 
-    if (capacity == cache.size) {
+    if (capacity == cache.getSize()) {
       removeLastRecently();
     }
     addRecently(key, value);
