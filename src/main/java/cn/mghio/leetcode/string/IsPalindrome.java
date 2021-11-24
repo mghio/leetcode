@@ -34,4 +34,37 @@ public class IsPalindrome {
     return sb.toString().equals(sbRev.toString());
   }
 
+  /**
+   * Given a string s, return true if it is a palindrome, or false otherwise.
+   *
+   * @param s the string
+   * @return true if it is a palindrome, else false
+   */
+  public boolean isPalindromeSolution2(String s) {
+    if (s == null) {
+      return true;
+    }
+
+    StringBuilder sb = new StringBuilder();
+    for (int i = 0; i < s.length(); i++) {
+      char ch = s.charAt(i);
+      if (Character.isLetterOrDigit(ch)) {
+        sb.append(Character.toLowerCase(ch));
+      }
+    }
+
+    int n = sb.length();
+    int left = 0;
+    int right = n - 1;
+    while (left < right) {
+      if (sb.charAt(left) != sb.charAt(right)) {
+        return false;
+      }
+      left++;
+      right--;
+    }
+
+    return true;
+  }
+
 }
