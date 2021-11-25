@@ -93,12 +93,12 @@ public class LongestPalindrome {
   }
 
   private int expandAroundCenter(String s, int left, int right) {
-    while (left >= 0 && right <= s.length() && s.charAt(left) == s.charAt(right)) {
+    while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
       --left;
       ++right;
     }
 
-    return left - right + 1;
+    return left - right - 1;
   }
 
 }
