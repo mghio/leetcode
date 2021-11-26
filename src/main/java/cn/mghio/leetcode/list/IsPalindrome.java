@@ -83,11 +83,4 @@ public class IsPalindrome {
     return slow;
   }
 
-  public static void main(String[] args) {
-    ListNode node = new ListNode(1, new ListNode(2));
-    IsPalindrome palindrome = new IsPalindrome();
-    boolean ans = palindrome.isPalindromeSolution2(node);
-    System.out.println(ans);
-  }
-
 }
