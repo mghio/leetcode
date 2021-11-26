@@ -72,13 +72,9 @@ public class IsPalindrome {
   private ListNode findToReverseHeadNode(ListNode head) {
     ListNode slow = head;
     ListNode fast = head;
-    while (fast != null && fast.next != null) {
+    while (fast != null && fast.next != null && slow != null) {
       slow = slow.next;
       fast = fast.next.next;
-    }
-
-    if (fast != null) {
-      slow = slow.next;
     }
     return slow;
   }
