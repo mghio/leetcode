@@ -89,6 +89,8 @@ public class FindDisappearedNumbers {
     for (int i = 1; i <= n; i++) {
       if (nums[i - 1] > 0) {
         ans.add(i);
+      } else {
+        nums[i] *= -1;
       }
     }
 
