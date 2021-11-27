@@ -66,4 +66,33 @@ public class FindDisappearedNumbers {
     return ans;
   }
 
+  /**
+   * return an array of all the integers in the range [1, n] that do not appear in nums.
+   *
+   * @param nums the array
+   * @return an array of all the integers in the range [1, n] that do not appear in nums
+   */
+  public List<Integer> findDisappearedNumbersSolution3(int[] nums) {
+    List<Integer> ans = new ArrayList<>();
+    if (nums == null || nums.length < 1) {
+      return ans;
+    }
+
+    for (int i = 0; i < nums.length; i++) {
+      int newIndex = Math.abs(nums[i]) - 1;
+      if (nums[newIndex] > 0) {
+        nums[newIndex] *= -1;
+      }
+    }
+
+    int n = nums.length;
+    for (int i = 1; i <= n; i++) {
+      if (nums[i - 1] > 0) {
+        ans.add(i);
+      }
+    }
+
+    return ans;
+  }
+
 }
