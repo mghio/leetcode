@@ -1,7 +1,9 @@
 package cn.mghio.leetcode.array;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Given an array nums of n integers where nums[i] is in the range [1, n], return an array of all
@@ -35,6 +37,33 @@ public class FindDisappearedNumbers {
     }
 
     return allNums;
+  }
+
+  /**
+   * return an array of all the integers in the range [1, n] that do not appear in nums.
+   *
+   * @param nums the array
+   * @return an array of all the integers in the range [1, n] that do not appear in nums
+   */
+  public List<Integer> findDisappearedNumbersSolution2(int[] nums) {
+    List<Integer> ans = new ArrayList<>();
+    if (nums == null || nums.length < 1) {
+      return ans;
+    }
+
+    int n = nums.length;
+    Set<Integer> numsSet = new HashSet<>(n);
+    for (int num : nums) {
+      numsSet.add(num);
+    }
+
+    for (int i = 1; i <= n; i++) {
+      if (!numsSet.contains(i)) {
+        ans.add(i);
+      }
+    }
+
+    return ans;
   }
 
 }
