@@ -27,18 +27,19 @@ public class FindAnagrams {
    */
   public List<Integer> findAnagrams(String s, String p) {
     List<Integer> ans = new ArrayList<>();
+
     int left = 0;
     int right = 0;
+    int match = 0;
     Map<Character, Integer> needs = new HashMap<>();
     Map<Character, Integer> window = new HashMap<>();
+    char[] sChars = s.toCharArray();
+    char[] pChars = p.toCharArray();
 
-    for (char c : p.toCharArray()) {
+    for (char c : pChars) {
       needs.put(c, needs.getOrDefault(c, 0) + 1);
     }
 
-    int match = 0;
-    char[] sChars = s.toCharArray();
-    char[] pChars = p.toCharArray();
     while (right < s.length()) {
       char c1 = sChars[right];
       if (needs.containsKey(c1)) {
