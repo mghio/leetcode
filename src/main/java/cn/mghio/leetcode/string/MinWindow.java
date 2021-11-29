@@ -14,6 +14,9 @@ import java.util.Objects;
  */
 public class MinWindow {
 
+  private final Map<Character, Integer> window = new HashMap<>();
+  private final Map<Character, Integer> needs = new HashMap<>();
+
   /**
    * return the minimum window substring of s such that every character in t (including duplicates)
    * is included in the window.
@@ -23,25 +26,18 @@ public class MinWindow {
    * @return the minimum window substring
    */
   public String minWindow(String s, String t) {
-    if (s == null || t == null) {
-      return "";
-    }
-
-    int start = 0;
+    int startIndex = 0;
     int minLen = Integer.MAX_VALUE;
     int left = 0;
     int right = 0;
 
-    Map<Character, Integer> window = new HashMap<>();
-    Map<Character, Integer> needs = new HashMap<>();
-
-    for (char c : t.toCharArray()) {
-      needs.put(c, needs.getOrDefault(c, 0) + 1);
-    }
-
     int match = 0;
     char[] sChars = s.toCharArray();
     char[] tChars = t.toCharArray();
+
+    for (char c : tChars) {
+      needs.put(c, needs.getOrDefault(c, 0) + 1);
+    }
 
     while (right < s.length()) {
       char c1 = sChars[right];
@@ -55,11 +51,11 @@ public class MinWindow {
 
       while (match == needs.size()) {
         if (right - left < minLen) {
-          start = left;
+          startIndex = left;
           minLen = right - left;
         }
 
-        char c2 = tChars[left];
+        char c2 = sChars[left];
         if (needs.containsKey(c2)) {
           window.put(c2, window.getOrDefault(c2, 0) - 1);
           if (window.get(c2) < needs.get(c2)) {
@@ -70,7 +66,7 @@ public class MinWindow {
       }
     }
 
-    return minLen == Integer.MIN_VALUE ? "" : s.substring(start, minLen);
+    return minLen == Integer.MIN_VALUE ? "" : s.substring(startIndex, startIndex + minLen);
   }
 
 }
