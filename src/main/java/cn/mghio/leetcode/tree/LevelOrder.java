@@ -1,6 +1,7 @@
 package cn.mghio.leetcode.tree;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -55,4 +56,43 @@ public class LevelOrder {
     return ans;
   }
 
+  /**
+   * print the binary tree in zigzag order, this first line is printed from left to right,
+   * the second layer is printed from right to left.
+   *
+   * @param root the root node
+   * @return the result
+   */
+  public List<List<Integer>> levelOrderSolution2(TreeNode root) {
+    if (root == null) {
+      return new ArrayList<>();
+    }
+
+    List<List<Integer>> ans = new ArrayList<>();
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.add(root);
+    while (!queue.isEmpty()) {
+      LinkedList<Integer> tmp = new LinkedList<>();
+      int levelSize = queue.size();
+      for (int i = 0; i < levelSize; i++) {
+        TreeNode node = queue.poll();
+        assert node != null;
+        tmp.add(node.val);
+        if (node.left != null) {
+          queue.add(node.left);
+        }
+        if (node.right != null) {
+          queue.add(node.right);
+        }
+      }
+
+      if (ans.size() % 2 == 1) {
+        Collections.reverse(tmp);
+      }
+
+      ans.add(tmp);
+    }
+
+    return ans;
+  }
 }
