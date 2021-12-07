@@ -8,7 +8,7 @@ package cn.mghio.leetcode.tree;
  */
 public class MaxPathSum {
 
-  private int ans = Integer.MIN_VALUE;
+  private int maxSum = Integer.MIN_VALUE;
 
   /**
    * Given the root of a binary tree, return the maximum path sum of any non-empty path.
@@ -16,14 +16,19 @@ public class MaxPathSum {
    * @param root the root node
    */
   public int maxPathSum(TreeNode root) {
-    if (root == null) {
+    maxGain(root);
+    return maxSum;
+  }
+
+  private int maxGain(TreeNode node) {
+    if (node == null) {
       return 0;
     }
 
-    int left = Math.max(0, maxPathSum(root.left));
-    int right = Math.max(0, maxPathSum(root.right));
-    ans = Math.max(ans, left + right + root.val);
-    return Math.max(left, right) + root.val;
+    int leftGain = Math.max(maxGain(node.left), 0);
+    int rightGain = Math.max(maxGain(node.right), 0);
+    maxSum = Math.max(maxSum, node.val + leftGain + rightGain);
+    return node.val + Math.max(leftGain, rightGain);
   }
 
 }
