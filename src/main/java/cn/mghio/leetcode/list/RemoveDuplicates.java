@@ -34,4 +34,28 @@ public class RemoveDuplicates {
     return head;
   }
 
+  /**
+   * Given the head of a sorted linked list, delete all duplicates such that each element appears
+   * only once.
+   *
+   * @param head the head node
+   * @return the linked list sorted as well
+   */
+  public ListNode removeDuplicatesSolution2(ListNode head) {
+    if (head == null) {
+      return null;
+    }
+
+    ListNode cur = head;
+    while (cur.next != null) {
+      if (cur.val == cur.next.val) {
+        cur.next = cur.next.next;
+      } else {
+        cur = cur.next;
+      }
+    }
+
+    return head;
+  }
+
 }
