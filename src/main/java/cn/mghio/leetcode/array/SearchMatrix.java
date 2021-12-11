@@ -46,4 +46,38 @@ public class SearchMatrix {
     return found;
   }
 
+  /**
+   * Search for a target value in an m x n integer matrix.
+   *
+   * @param matrix the matrix array
+   * @param target the target value
+   * @return true is contains target value, else false
+   */
+  public boolean searchMatrixSolution2(int[][] matrix, int target) {
+    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+      return false;
+    }
+
+    boolean found = false;
+    int rows = matrix.length;
+    int cols = matrix[0].length;
+
+    int row = rows - 1;
+    int col = 0;
+    while (row >= 0 && col < cols) {
+      int leftDownValue = matrix[row][col];
+
+      if (leftDownValue == target) {
+        found = true;
+        break;
+      } else if (leftDownValue > target) {
+        --row;
+      } else {
+        ++col;
+      }
+    }
+
+    return found;
+  }
+
 }
