@@ -105,4 +105,48 @@ public class SearchMatrix {
     return found;
   }
 
+  /**
+   * Search for a target value in an m x n integer matrix.
+   *
+   * @param matrix the matrix array
+   * @param target the target value
+   * @return true is contains target value, else false
+   */
+  public boolean searchMatrixSolution4(int[][] matrix, int target) {
+    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+      return false;
+    }
+
+    boolean found = false;
+    for (int[] row : matrix) {
+      int index = binarySearch(row, target);
+      if (index > 0) {
+        found = true;
+        break;
+      }
+    }
+
+    return found;
+  }
+
+  private int binarySearch(int[] row, int target) {
+    int l = 0;
+    int h = row.length - 1;
+
+    while (l <= h) {
+      int mid = l + (h - l) / 2;
+      int midVal = row[mid];
+
+      if (midVal == target) {
+        return mid;
+      } else if (midVal < target) {
+        l = mid + 1;
+      } else {
+        h = mid - 1;
+      }
+    }
+
+    return -1;
+  }
+
 }
