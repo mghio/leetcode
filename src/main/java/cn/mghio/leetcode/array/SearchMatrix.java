@@ -80,4 +80,29 @@ public class SearchMatrix {
     return found;
   }
 
+  /**
+   * Search for a target value in an m x n integer matrix.
+   *
+   * @param matrix the matrix array
+   * @param target the target value
+   * @return true is contains target value, else false
+   */
+  public boolean searchMatrixSolution3(int[][] matrix, int target) {
+    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+      return false;
+    }
+
+    boolean found = false;
+    for (int[] row : matrix) {
+      for (int element : row) {
+        if (element == target) {
+          found = true;
+          break;
+        }
+      }
+    }
+
+    return found;
+  }
+
 }
