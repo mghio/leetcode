@@ -29,4 +29,23 @@ public class TrailingZeroes {
     return ans;
   }
 
+  /**
+   * Given an integer n, return the number of trailing zeroes in n!
+   *
+   * @param n the n number
+   * @return the number of trailing zeroes
+   */
+  public int trailingZeroesSolution2(int n) {
+    if (n <= 0) {
+      return 0;
+    }
+
+    int ans = 0;
+    for (int d = n; d / 5 > 0; d /= 5) {
+      ans += d / 5;
+    }
+
+    return ans;
+  }
+
 }
