@@ -67,4 +67,26 @@ public class IntersectionNode {
     return null;
   }
 
+  /**
+   * Get intersection node.
+   *
+   * @param headA the head node
+   * @param headB the other head node
+   * @return the intersection node
+   */
+  public SinglyNode getIntersectionNodeSolution3(SinglyNode headA, SinglyNode headB) {
+    if (headA == null || headB == null) {
+      return null;
+    }
+
+    SinglyNode pA = headA;
+    SinglyNode pB = headB;
+    while (pA != pB) {
+      pA = pA == null ? headB : pA.next;
+      pB = pB == null ? headA : pB.next;
+    }
+
+    return pA;
+  }
+
 }
