@@ -1,7 +1,7 @@
 package cn.mghio.leetcode.list;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Given the heads of two singly linked-lists headA and headB, return the node at which the two
@@ -19,28 +19,19 @@ public class IntersectionNode {
    * @param headB the other head node
    * @return the intersection node
    */
-  public SinglyNode getIntersectionNodeV1(SinglyNode headA, SinglyNode headB) {
+  public SinglyNode getIntersectionNodeSolution1(SinglyNode headA, SinglyNode headB) {
     if (headA == null || headB == null) {
       return null;
     }
 
-    List<SinglyNode> headANodes = new ArrayList<>();
-    SinglyNode nodeA = headA;
-    headANodes.add(headA);
-    while (nodeA.next != null) {
-      nodeA = nodeA.next;
-      headANodes.add(nodeA);
-    }
-
-    SinglyNode nodeB = headB;
-    if (headANodes.contains(nodeB)) {
-      return nodeB;
-    }
-    while (nodeB.next != null) {
-      nodeB = nodeB.next;
-      if (headANodes.contains(nodeB)) {
-        return nodeB;
+    for (SinglyNode curNodeA = headA; curNodeA != null; ) {
+      for (SinglyNode curNodeB = headB; curNodeB != null; ) {
+        if (curNodeA == curNodeB) {
+          return curNodeA;
+        }
+        curNodeB = curNodeB.next;
       }
+      curNodeA = headA.next;
     }
 
     return null;
@@ -53,27 +44,27 @@ public class IntersectionNode {
    * @param headB the other head node
    * @return the intersection node
    */
-  public SinglyNode getIntersectionNodeV2(SinglyNode headA, SinglyNode headB) {
+  public SinglyNode getIntersectionNodeSolution2(SinglyNode headA, SinglyNode headB) {
     if (headA == null || headB == null) {
       return null;
     }
 
-    SinglyNode p1 = headA, p2 = headB;
-    while (p1 != p2) {
-      if (p1 == null) {
-        p1 = headB;
-      } else {
-        p1 = p1.next;
-      }
-
-      if (p2 == null) {
-        p2 = headA;
-      } else {
-        p2 = p2.next;
-      }
+    Set<SinglyNode> visited = new HashSet<>();
+    SinglyNode tmp = headA;
+    while (tmp != null) {
+      visited.add(tmp);
+      tmp = tmp.next;
     }
 
-    return p2;
+    tmp = headB;
+    while (tmp != null) {
+      if (visited.contains(tmp)) {
+        return tmp;
+      }
+      tmp = tmp.next;
+    }
+
+    return null;
   }
 
 }
