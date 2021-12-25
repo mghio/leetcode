@@ -28,4 +28,20 @@ public class InvertTree {
     return root;
   }
 
+  /**
+   * Given the root of a binary tree, invert the tree, and return its root.
+   *
+   * @param root the root node
+   * @return the inverted tree
+   */
+  public TreeNode invertTreeSolution2(TreeNode root) {
+    if (root == null) {
+      return null;
+    }
+
+    root.right = invertTreeSolution2(root.left);
+    root.left = invertTreeSolution2(root.right);
+    return root;
+  }
+
 }
