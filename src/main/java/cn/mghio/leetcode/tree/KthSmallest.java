@@ -34,6 +34,7 @@ public class KthSmallest {
     rank++;
     if (rank == k) {
       res = node.val;
+      return;
     }
 
     traverse(node.right, k);
