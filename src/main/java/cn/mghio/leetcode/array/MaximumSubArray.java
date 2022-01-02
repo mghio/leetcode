@@ -22,11 +22,7 @@ public class MaximumSubArray {
     int sum = 0;
 
     for (int num : nums) {
-      if (sum > 0) {
-        sum += num;
-      } else {
-        sum = num;
-      }
+      sum = Math.max(num, sum + num);
       ans = Math.max(sum, ans);
     }
 
