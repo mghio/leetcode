@@ -29,4 +29,34 @@ public class MaximumSubArray {
     return ans;
   }
 
+  /**
+   * Find the contiguous subarray which has the largest sum and return its num.
+   *
+   * @param nums the num array
+   * @return the largest sum
+   */
+  public int maxSubArraySolution2(int[] nums) {
+    int len = nums.length;
+    // dp[i] means: the maximum sum of consecutive sub-arrays ending in nums[i]
+    int[] dp = new int[len];
+    dp[0] = nums[0];
+
+    for (int i = 1; i < len; i++) {
+      if (dp[i - 1] > 0) {
+        dp[i] = dp[i - 1] + nums[i];
+      } else {
+        dp[i] = nums[i];
+      }
+    }
+
+    int ans = dp[0];
+    for (int i = 1; i < len; i++) {
+      if (ans < dp[i]) {
+        ans = dp[i];
+      }
+    }
+
+    return ans;
+  }
+
 }
