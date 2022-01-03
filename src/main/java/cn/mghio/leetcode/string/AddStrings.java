@@ -28,7 +28,8 @@ public class AddStrings {
     int carry = 0;
     StringBuilder ans = new StringBuilder();
     for (int i = num1.length() - 1; i >= 0; i--) {
-      int result = Integer.parseInt(num1.charAt(i) + "") + Integer.parseInt(num2.charAt(i) + "") + carry;
+      int result =
+          Integer.parseInt(num1.charAt(i) + "") + Integer.parseInt(num2.charAt(i) + "") + carry;
       if (result >= 10) {
         ans.append(result % 10);
         carry = 1;
@@ -43,6 +44,32 @@ public class AddStrings {
     }
 
     return ans.reverse().toString();
+  }
+
+  /**
+   * Return the sum of num1 and num2 as a string.
+   *
+   * @param num1 the num1
+   * @param num2 the num2
+   * @return the sum
+   */
+  public String addStringsSolution2(String num1, String num2) {
+    int i = num1.length() - 1;
+    int j = num2.length() - 1;
+    int carry = 0;
+    StringBuilder sb = new StringBuilder();
+
+    while (i >= 0 || j >= 0 || carry != 0) {
+      int x = i >= 0 ? num1.charAt(i) - '0' : 0;
+      int y = j >= 0 ? num2.charAt(j) - '0' : 0;
+      int result = x + y + carry;
+      sb.append(result % 10);
+      carry = result / 10;
+      i--;
+      j--;
+    }
+
+    return sb.reverse().toString();
   }
 
 }
