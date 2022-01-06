@@ -1,5 +1,7 @@
 package cn.mghio.leetcode.dp;
 
+import java.util.Arrays;
+
 /**
  * Given an integer array nums, return the length of the longest strictly increasing subsequence.
  *
@@ -19,15 +21,15 @@ public class lengthOfLIS {
    * @return the length
    */
   public int lengthOfLIS(int[] nums) {
-    if (nums == null || nums.length < 1) {
+    if (nums == null || nums.length == 0) {
       return 0;
     }
 
-    int[] dp = new int[nums.length];
-    dp[0] = 1;
+    int len = nums.length;
+    int[] dp = new int[len];
+    Arrays.fill(dp, 1);
     int ans = 1;
-    for (int i = 1; i < nums.length; i++) {
-      dp[i] = 1;
+    for (int i = 1; i < len; i++) {
       for (int j = 0; j < i; j++) {
         if (nums[i] > nums[j]) {
           dp[i] = Math.max(dp[i], dp[j] + 1);
