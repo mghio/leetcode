@@ -1,5 +1,7 @@
 package cn.mghio.leetcode.dp;
 
+import java.util.Arrays;
+
 /**
  * Given two strings word1 and word2, return the minimum number of operations required to convert
  * word1 to word2.
@@ -77,6 +79,48 @@ public class MinDistance {
 
     int maxCommonSeq = getLongestCommonSequence(word1, word2);
     return (word1.length() - maxCommonSeq) + (word2.length() - maxCommonSeq);
+  }
+
+  private int[][] memo;
+
+  /**
+   * Given two strings word1 and word2, return the minimum number of operations required to convert
+   * word1 to word2.
+   *
+   * @param word1 the word1
+   * @param word2 the word2
+   * @return the min distance
+   */
+  public int minDistanceSolution4(String word1, String word2) {
+    if ((word1 == null || word1.length() == 0) || (word2 == null || word2.length() == 0)) {
+      return word1 == null ? (word2 == null ? 0 : word2.length()) : word1.length();
+    }
+
+    memo = new int[word1.length()][word2.length()];
+    for (int[] row : memo) {
+      Arrays.fill(row, -1);
+    }
+
+    int maxCommonSeq = getLongestCommonSequence2(word1, 0, word2, 0);
+    return (word1.length() - maxCommonSeq) + (word2.length() - maxCommonSeq);
+  }
+
+  private int getLongestCommonSequence2(String word1, int i, String word2, int j) {
+    if (i == word1.length() || j == word2.length()) {
+      return 0;
+    }
+
+    if (memo[i][j] != -1) {
+      return memo[i][j];
+    }
+
+    if (word1.charAt(i) == word2.charAt(j)) {
+      memo[i][j] = getLongestCommonSequence2(word1, i + 1, word2, j + 1) + 1;
+    } else {
+      memo[i][j] = Math.max(getLongestCommonSequence2(word1, i, word2, j + 1), getLongestCommonSequence2(word1, i + 1, word2, j));
+    }
+
+    return memo[i][j];
   }
 
   private int getLongestCommonSequence(String word1, String word2) {
