@@ -62,6 +62,41 @@ public class MinDistance {
     return lwsDP(word1.toCharArray(), word1.length(), word2.toCharArray(), word2.length());
   }
 
+  /**
+   * Given two strings word1 and word2, return the minimum number of operations required to convert
+   * word1 to word2.
+   *
+   * @param word1 the word1
+   * @param word2 the word2
+   * @return the min distance
+   */
+  public int minDistanceSolution3(String word1, String word2) {
+    if ((word1 == null || word1.length() == 0) || (word2 == null || word2.length() == 0)) {
+      return word1 == null ? (word2 == null ? 0 : word2.length()) : word1.length();
+    }
+
+    int maxCommonSeq = getLongestCommonSequence(word1, word2);
+    return (word1.length() - maxCommonSeq) + (word2.length() - maxCommonSeq);
+  }
+
+  private int getLongestCommonSequence(String word1, String word2) {
+    int m = word1.length();
+    int n = word2.length();
+    int[][] dp = new int[m + 1][n + 1];
+
+    for (int i = 1; i <= n; i++) {
+      for (int j = 1; j <= m; j++) {
+        if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
+          dp[i][j] = dp[i - 1][j - 1] + 1;
+        } else {
+          dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+        }
+      }
+    }
+
+    return dp[m][n];
+  }
+
   private int lwsDP(char[] a, int m, char[] b, int n) {
     int[][] minDist = new int[m][n];
 
