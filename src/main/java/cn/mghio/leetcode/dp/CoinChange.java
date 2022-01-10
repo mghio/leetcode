@@ -39,4 +39,49 @@ public class CoinChange {
     return dp[count] > count ? -1 : dp[count];
   }
 
+  private int[] memo;
+
+  /**
+   * Coin change.
+   *
+   * @param coins the coin array
+   * @param count the sum count
+   * @return the number of coin
+   */
+  public int coinChangeSolution2(int[] coins, int count) {
+    if (count == 0) {
+      return 0;
+    }
+
+    memo = new int[count + 1];
+    Arrays.fill(memo, -2);
+
+    return helper(coins, count);
+  }
+
+  private int helper(int[] coins, int count) {
+    if (count == 0) {
+      return 0;
+    }
+
+    if (memo[count] != -2) {
+      return memo[count];
+    }
+
+    int res = Integer.MAX_VALUE;
+    for (int coin : coins) {
+      if (count - coin < 0) {
+        continue;
+      }
+      int subProb = helper(coins, count - coin);
+      if (subProb == -1) {
+        continue;
+      }
+      res = Math.min(res, subProb + 1);
+    }
+
+    memo[count] = res == Integer.MAX_VALUE ? -1 : res;
+    return memo[count];
+  }
+
 }
