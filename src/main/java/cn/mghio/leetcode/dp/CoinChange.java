@@ -59,6 +59,29 @@ public class CoinChange {
     return helper(coins, count);
   }
 
+  /**
+   * Coin change.
+   *
+   * @param coins the coin array
+   * @param count the sum count
+   * @return the number of coin
+   */
+  public int coinChangeSolution3(int[] coins, int count) {
+    int[] dp = new int[count + 1];
+    Arrays.fill(dp, Integer.MAX_VALUE);
+
+    for (int i = 0; i < dp.length; i++) {
+      for (int coin : coins) {
+        if (i - coin < 0) {
+          continue;
+        }
+        dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+      }
+    }
+
+    return dp[count] == Integer.MAX_VALUE ? -1 : dp[count];
+  }
+
   private int helper(int[] coins, int count) {
     if (count == 0) {
       return 0;
