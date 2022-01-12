@@ -1,6 +1,8 @@
 package cn.mghio.leetcode.tree;
 
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.Queue;
 
 /**
@@ -38,6 +40,31 @@ public class WidthOfBinaryTree {
     }
 
     return res;
+  }
+
+  private int res = 0;
+  private Map<Integer, Integer> left = new HashMap<>();
+
+  /**
+   * Given the root of a binary tree, return the maximum width of the given tree.
+   *
+   * @param root the root node
+   * @return the result
+   */
+  public int withOfBinaryTreeSolution2(TreeNode root) {
+    dfs(root, 0, 0);
+    return res;
+  }
+
+  private void dfs(TreeNode root, int depth, int position) {
+    if (root == null) {
+      return;
+    }
+
+    left.putIfAbsent(depth, position);
+    res = Math.max(res, position - left.get(depth) + 1);
+    dfs(root.left, depth + 1, position * 2);
+    dfs(root.right, depth + 1, position * 2 + 1);
   }
 
   public static class Node {
