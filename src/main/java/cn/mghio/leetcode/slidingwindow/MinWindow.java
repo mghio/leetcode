@@ -61,10 +61,10 @@ public class MinWindow {
         char d = s.charAt(left);
         left++;
         if (needs.containsKey(d)) {
-          window.put(d, window.get(d) - 1);
           if (Objects.equals(window.get(d), needs.get(d))) {
             valid--;
           }
+          window.put(d, window.get(d) - 1);
         }
       }
     }
