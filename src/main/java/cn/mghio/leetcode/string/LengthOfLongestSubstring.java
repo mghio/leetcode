@@ -1,7 +1,9 @@
 package cn.mghio.leetcode.string;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Given a string s, find the length of the longest substring without repeating characters.
@@ -44,6 +46,33 @@ public class LengthOfLongestSubstring {
     }
 
     return res;
+  }
+
+  /**
+   * Given a string s, find the length of the longest substring without repeating characters.
+   *
+   * @param s the source string
+   * @return the length of the longest substring without repeating characters
+   */
+  public int lengthOfLongestSubstringSolution2(String s) {
+    if (s == null || s.length() == 0) {
+      return 0;
+    }
+
+    Set<Character> set = new HashSet<>();
+    int len = s.length();
+    int rk = -1, ans = 0;
+    for (int i = 0; i < len; ++i) {
+      if (i != 0) {
+        set.remove(s.charAt(i - 1));
+      }
+      while (rk + 1 < len && !set.contains(s.charAt(rk + 1))) {
+        set.add(s.charAt(rk + 1));
+        ++rk;
+      }
+      ans = Math.max(ans, rk - i + 1);
+    }
+    return ans;
   }
 
 }
