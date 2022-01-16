@@ -41,4 +41,35 @@ public class FindNumberIn2DArray {
     return res;
   }
 
+  /**
+   * input such a two-dimensional array and an integer, and determine whether the array contains the
+   * integer.
+   *
+   * @param matrix the 2-D array
+   * @param target the target value
+   * @return whether the array contains the integer
+   */
+  public boolean findNumberIn2DArraySolution2(int[][] matrix, int target) {
+    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+      return false;
+    }
+
+    boolean res = false;
+    int rows = matrix.length, cols = matrix[0].length;
+    int curRow = rows - 1, curCol = 0;
+    while (curRow >= 0 && curCol < cols) {
+      int value = matrix[curRow][curCol];
+      if (value == target) {
+        res = true;
+        break;
+      } else if (value > target) {
+        curRow--;
+      } else {
+        curCol++;
+      }
+    }
+
+    return res;
+  }
+
 }
