@@ -14,10 +14,14 @@ import java.util.Random;
 public class RedPacketAlgo {
 
   public static void main(String[] args) {
-    List<Integer> amountList = divideRedPacket(5000, 30);
+    List<Integer> amountList = divideRedPacket(3000, 10);
     for (Integer amount : amountList) {
       System.out.println("抢到金额：" + new BigDecimal(amount).divide(new BigDecimal(100)));
     }
+
+    amountList.sort((o1, o2) -> o2 - o1);
+    System.out.println("------------------------------");
+    System.out.println("运气王：" + new BigDecimal(amountList.get(0)).divide(new BigDecimal(100)));
   }
 
   /**
