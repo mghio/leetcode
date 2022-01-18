@@ -1,7 +1,6 @@
 package cn.mghio.leetcode.list;
 
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import cn.mghio.leetcode.heap.MaxPriorityQueue;
 
 /**
  * You are given an array of k linked-lists lists, each linked-list is sorted in ascending order.
@@ -40,18 +39,18 @@ public class MergeKLists {
     SinglyNode dummy = new SinglyNode(-1);
     SinglyNode p = dummy;
     // min heap, default is min heap
-    PriorityQueue<SinglyNode> minHeap = new PriorityQueue<>(Comparator.comparingInt(a -> a.val));
+    MaxPriorityQueue<SinglyNode> minHeap = new MaxPriorityQueue<>(lists.length);
     for (SinglyNode node : lists) {
       if (node != null) {
-        minHeap.add(node);
+        minHeap.insert(node);
       }
     }
 
     while (!minHeap.isEmpty()) {
-      SinglyNode singlyNode = minHeap.poll();
+      SinglyNode singlyNode = minHeap.delMax();
       p.next = singlyNode;
       if (singlyNode.next != null) {
-        minHeap.add(singlyNode.next);
+        minHeap.insert(singlyNode.next);
       }
       p = p.next;
     }

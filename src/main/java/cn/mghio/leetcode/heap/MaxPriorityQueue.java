@@ -43,6 +43,10 @@ public class MaxPriorityQueue<K extends Comparable<K>> {
     return max;
   }
 
+  public boolean isEmpty() {
+    return count == 0;
+  }
+
   /**
    * 上浮第 K 个元素，维护堆的性质
    *
