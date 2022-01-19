@@ -56,6 +56,32 @@ public class WidthOfBinaryTree {
     return res;
   }
 
+  /**
+   * Given the root of a binary tree, return the maximum width of the given tree.
+   *
+   * @param root the root node
+   * @return the result
+   */
+  public int withOfBinaryTreeSolution3(TreeNode root) {
+    Queue<Node> queue = new LinkedList<>();
+    queue.add(new Node(root, 0, 0));
+    int curDepth = 0, left = 0, res = 0;
+
+    while (!queue.isEmpty()) {
+      Node node = queue.poll();
+      if (node != null) {
+        queue.add(new Node(root.left, node.depth + 1, node.position * 2));
+        queue.add(new Node(root.right, node.depth + 1, node.position * 2 + 1));
+        if (curDepth != node.depth) {
+          curDepth = node.depth;
+          left = node.position;
+        }
+        res = Math.max(res, node.position - left + 1);
+      }
+    }
+    return res;
+  }
+
   private void dfs(TreeNode root, int depth, int position) {
     if (root == null) {
       return;
