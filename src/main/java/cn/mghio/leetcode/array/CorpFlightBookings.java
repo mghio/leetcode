@@ -75,4 +75,33 @@ public class CorpFlightBookings {
 
   }
 
+  /**
+   * Return an array answer of length n, where answer[i] is the total number of seats reserved for
+   * flight i.
+   *
+   * @param bookings the booking array
+   * @param n the max flight number
+   * @return the total number of seats reserved for flight i
+   */
+  public int[] corpFlightBookingsSolution2(int[][] bookings, int n) {
+    int[] diff = new int[n];
+
+    for (int[] booking : bookings) {
+      int i = booking[0] - 1;
+      int j = booking[1] - 1;
+      int val = booking[2];
+      diff[i] += val;
+      if (j + 1 < n) {
+        diff[j + 1] -= val;
+      }
+    }
+
+    int[] res = new int[n];
+    res[0] = diff[0];
+    for (int i = 1; i < diff.length; i++) {
+      res[i] = res[i - 1] + diff[i];
+    }
+    return res;
+  }
+
 }
