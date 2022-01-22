@@ -34,4 +34,27 @@ public class DeleteDuplicates {
     return head;
   }
 
+  /**
+   * Return the linked list sorted as well.
+   *
+   * @param head the head node
+   * @return the linked list sorted as well
+   */
+  public ListNode deleteDuplicatesSolution2(ListNode head) {
+    if (head == null) {
+      return null;
+    }
+
+    ListNode cur = head;
+    while (cur.next != null) {
+      if (cur.val != cur.next.val) {
+        cur.next = cur.next.next;
+      } else {
+        cur = cur.next;
+      }
+    }
+
+    return head;
+  }
+
 }
