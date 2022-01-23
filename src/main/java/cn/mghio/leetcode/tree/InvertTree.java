@@ -26,12 +26,6 @@ public class InvertTree {
     return root;
   }
 
-  private void swap(TreeNode root) {
-    TreeNode tmp = root.left;
-    root.left = root.right;
-    root.right = tmp;
-  }
-
   /**
    * Given the root of a binary tree, invert the tree, and return its root.
    *
@@ -43,9 +37,19 @@ public class InvertTree {
       return null;
     }
 
-    root.right = invertTreeSolution2(root.left);
-    root.left = invertTreeSolution2(root.right);
+    TreeNode right = invertTreeSolution2(root.left);
+    TreeNode left = invertTreeSolution2(root.right);
+
+    root.right = right;
+    root.left = left;
+
     return root;
+  }
+
+  private void swap(TreeNode root) {
+    TreeNode tmp = root.left;
+    root.left = root.right;
+    root.right = tmp;
   }
 
 }
