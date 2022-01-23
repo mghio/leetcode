@@ -25,7 +25,11 @@ public class BuildBinaryTreeByPreOrderAndInOrder {
 
   private TreeNode buildTree(int[] preOrder, int preStart, int preEnd,
                              int[] inOrder, int inStart, int inEnd) {
-    int rootVal = preOrder[0];
+    if (preStart > preEnd) {
+      return null;
+    }
+
+    int rootVal = preOrder[preStart];
     int rootIndexOfInOrder = -1;
 
     for (int i = inStart; i <= inEnd; i++) {
