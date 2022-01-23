@@ -127,6 +127,32 @@ public class Flatten {
     }
   }
 
+  /**
+   * Given the root of a binary tree, flatten the tree into a "linked list".
+   *
+   * @param root the root node
+   */
+  public void flattenSolution5(TreeNode root) {
+    TreeNode curr = root;
+    while (curr != null) {
+      if (curr.left == null) {
+        curr = curr.next;
+        continue;
+      }
+
+      TreeNode next = curr.left;
+      TreeNode predecessor = next;
+      while (predecessor.right != null) {
+        predecessor = predecessor.right;
+      }
+
+      predecessor.right = curr.right;
+      curr.left = null;
+      curr.right = next;
+      curr = curr.right;
+    }
+  }
+
   private void preOrderTraversal(TreeNode node, List<TreeNode> preOrderNodes) {
     if (node != null) {
       preOrderNodes.add(node);
