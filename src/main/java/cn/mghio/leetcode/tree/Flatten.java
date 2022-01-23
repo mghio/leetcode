@@ -94,13 +94,45 @@ public class Flatten {
     }
   }
 
+  /**
+   * Given the root of a binary tree, flatten the tree into a "linked list".
+   *
+   * @param root the root node
+   */
+  public void flattenSolution4(TreeNode root) {
+    if (root == null) {
+      return;
+    }
+
+    Deque<TreeNode> stack = new LinkedList<>();
+    stack.push(root);
+    TreeNode prev = null;
+
+    while (!stack.isEmpty()) {
+      TreeNode cur = stack.poll();
+      if (prev != null) {
+        prev.left = null;
+        prev.right = cur;
+      }
+
+      TreeNode right = cur.right;
+      if (right != null) {
+        stack.push(right);
+      }
+      TreeNode left = cur.left;
+      if (left != null) {
+        stack.push(left);
+      }
+      prev = cur;
+    }
+  }
+
   private void preOrderTraversal(TreeNode node, List<TreeNode> preOrderNodes) {
     if (node != null) {
       preOrderNodes.add(node);
       preOrderTraversal(node.left, preOrderNodes);
       preOrderTraversal(node.right, preOrderNodes);
     }
-
   }
 
 }
