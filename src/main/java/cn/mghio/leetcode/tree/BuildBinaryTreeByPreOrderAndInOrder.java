@@ -1,5 +1,8 @@
 package cn.mghio.leetcode.tree;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Given two integer arrays preorder and inorder where preorder is the preorder traversal of a
  * binary tree and inorder is the inorder traversal of the same tree, construct and return the
@@ -9,6 +12,9 @@ package cn.mghio.leetcode.tree;
  * @since 2021-12-27
  */
 public class BuildBinaryTreeByPreOrderAndInOrder {
+
+  // inorder： <value, index>
+  private final Map<Integer, Integer> indexMap = new HashMap<>();
 
   /**
    * Given two integer arrays preorder and inorder where preorder is the preorder traversal of a
@@ -20,6 +26,15 @@ public class BuildBinaryTreeByPreOrderAndInOrder {
    * @return the binary tree
    */
   public TreeNode buildTree(int[] preOrder, int[] inOrder) {
+    if (preOrder == null || preOrder.length == 0) {
+      return null;
+    }
+
+    int len = inOrder.length;
+    for (int i = 0; i < len; i++) {
+      indexMap.put(inOrder[i], i);
+    }
+
     return buildTree(preOrder, 0, preOrder.length - 1, inOrder, 0, inOrder.length - 1);
   }
 
@@ -30,14 +45,7 @@ public class BuildBinaryTreeByPreOrderAndInOrder {
     }
 
     int rootVal = preOrder[preStart];
-    int rootIndexOfInOrder = -1;
-
-    for (int i = inStart; i <= inEnd; i++) {
-      if (inOrder[i] == rootVal) {
-        rootIndexOfInOrder = i;
-        break;
-      }
-    }
+    int rootIndexOfInOrder = indexMap.get(rootVal);
 
     int leftTreeSize = rootIndexOfInOrder - inStart;
     TreeNode root = new TreeNode(rootVal);
