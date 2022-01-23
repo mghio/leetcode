@@ -29,6 +29,16 @@ public class ConstructMaximumBinaryTree {
       return null;
     }
 
+    int index = findMaxValIndex(nums, l, h);
+
+    TreeNode root = new TreeNode(nums[index]);
+    root.left = buildTree(nums, l, index - 1);
+    root.right = buildTree(nums, index + 1, h);
+
+    return root;
+  }
+
+  private int findMaxValIndex(int[] nums, int l, int h) {
     int index = -1;
     int maxVal = Integer.MIN_VALUE;
     for (int i = l; i <= h; i++) {
@@ -37,11 +47,7 @@ public class ConstructMaximumBinaryTree {
         index = i;
       }
     }
-
-    TreeNode root = new TreeNode(maxVal);
-    root.left = buildTree(nums, l, index - 1);
-    root.right = buildTree(nums, index + 1, h);
-    return root;
+    return index;
   }
 
 }
