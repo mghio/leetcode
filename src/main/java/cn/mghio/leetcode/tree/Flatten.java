@@ -1,6 +1,8 @@
 package cn.mghio.leetcode.tree;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -52,6 +54,39 @@ public class Flatten {
     preOrderTraversal(root, preOrderNodes);
 
     for (int i = 1, len = preOrderNodes.size(); i < len; i++) {
+      TreeNode pre = preOrderNodes.get(i - 1);
+      TreeNode cur = preOrderNodes.get(i);
+      pre.left = null;
+      pre.right = cur;
+    }
+  }
+
+  /**
+   * Given the root of a binary tree, flatten the tree into a "linked list".
+   *
+   * @param root the root node
+   */
+  public void flattenSolution3(TreeNode root) {
+    if (root == null) {
+      return;
+    }
+
+    List<TreeNode> preOrderNodes = new ArrayList<>();
+    Deque<TreeNode> stack = new LinkedList<>();
+    TreeNode node = root;
+    while (!stack.isEmpty() || node != null) {
+      while (node != null) {
+        preOrderNodes.add(node);
+        stack.push(node);
+        node = node.left;
+      }
+      node = stack.poll();
+      assert node != null;
+      node = node.right;
+    }
+
+    int size = preOrderNodes.size();
+    for (int i = 1; i < size; i++) {
       TreeNode pre = preOrderNodes.get(i - 1);
       TreeNode cur = preOrderNodes.get(i);
       pre.left = null;
