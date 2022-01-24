@@ -21,6 +21,8 @@ public class Codec {
    */
   private static final String NULL = "#";
 
+  //-------------------------------------- pre order --------------------------------------
+
   /**
    * Serialize binary tree
    *
@@ -79,6 +81,58 @@ public class Codec {
     serializeUsePreOrderTraversal(root.left, sb);
     serializeUsePreOrderTraversal(root.right, sb);
     return sb;
+  }
+
+  //-------------------------------------- post order --------------------------------------
+
+  public String serializeUsePostOrderTraversal(TreeNode root) {
+    if (root == null) {
+      return null;
+    }
+
+    StringBuilder sb = new StringBuilder();
+    serializeUsePostOrderTraversal(root, sb);
+    return sb.toString();
+  }
+
+  public TreeNode deserializePostOrderTraversal(String data) {
+    if (data == null || data.length() == 0) {
+      return null;
+    }
+
+    LinkedList<String> list = new LinkedList<>();
+    String[] nodes = data.split(SEP);
+    for (String node : nodes) {
+      list.add(node);
+    }
+    return deserializePostOrderTraversal(list);
+  }
+
+  private TreeNode deserializePostOrderTraversal(LinkedList<String> list) {
+    if (list == null || list.isEmpty()) {
+      return null;
+    }
+
+    String last = list.removeLast();
+    if (NULL.equals(last)) {
+      return null;
+    }
+    TreeNode root = new TreeNode(Integer.parseInt(last));
+
+    root.right = deserializePostOrderTraversal(list);
+    root.left = deserializePostOrderTraversal(list);
+    return root;
+  }
+
+  private void serializeUsePostOrderTraversal(TreeNode root, StringBuilder sb) {
+    if (root == null) {
+      sb.append(NULL).append(SEP);
+      return;
+    }
+
+    serializeUsePostOrderTraversal(root.left, sb);
+    serializeUsePostOrderTraversal(root.right, sb);
+    sb.append(root.val).append(SEP);
   }
 
 }
