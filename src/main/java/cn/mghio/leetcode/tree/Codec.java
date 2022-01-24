@@ -2,6 +2,7 @@ package cn.mghio.leetcode.tree;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * Serialize and Deserialize Binary Tree.
@@ -133,6 +134,68 @@ public class Codec {
     serializeUsePostOrderTraversal(root.left, sb);
     serializeUsePostOrderTraversal(root.right, sb);
     sb.append(root.val).append(SEP);
+  }
+
+  //-------------------------------------- level order --------------------------------------
+
+  public String serializeUseLevelOrderTraversal(TreeNode root) {
+    if (root == null) {
+      return null;
+    }
+
+    StringBuilder sb = new StringBuilder();
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+
+    while (!queue.isEmpty()) {
+      TreeNode curNode = queue.poll();
+
+      if (curNode == null) {
+        sb.append(NULL).append(SEP);
+        continue;
+      }
+      sb.append(curNode.val).append(SEP);
+
+      queue.offer(curNode.left);
+      queue.offer(curNode.right);
+    }
+
+    return sb.toString();
+  }
+
+  public TreeNode deserializeLevelOrderTraversal(String data) {
+    if (data == null || data.length() == 0) {
+      return null;
+    }
+
+    String[] nodes = data.split(SEP);
+    TreeNode root = new TreeNode(Integer.parseInt(nodes[0]));
+
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+
+    for (int i = 1; i < nodes.length; ) {
+      TreeNode parent = queue.poll();
+      assert parent != null;
+
+      String left = nodes[i++];
+      if (NULL.equals(left)) {
+        parent.left = null;
+      } else {
+        parent.left = new TreeNode(Integer.parseInt(left));
+        queue.offer(parent.left);
+      }
+
+      String right = nodes[i++];
+      if (NULL.equals(right)) {
+        parent.right = null;
+      } else {
+        parent.right = new TreeNode(Integer.parseInt(right));
+        queue.offer(parent.right);
+      }
+    }
+
+    return root;
   }
 
 }
