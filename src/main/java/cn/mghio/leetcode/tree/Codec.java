@@ -1,6 +1,5 @@
 package cn.mghio.leetcode.tree;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,8 +27,9 @@ public class Codec {
    * @param root the root node
    * @return the serialized data
    */
-  public String doSerialize(TreeNode root) {
-    return doSerialize(root, new StringBuilder()).toString();
+  public String serializeUsePreOrderTraversal(TreeNode root) {
+    StringBuilder sb = new StringBuilder();
+    return serializeUsePreOrderTraversal(root, sb).toString();
   }
 
   /**
@@ -38,12 +38,20 @@ public class Codec {
    * @param data the serialized data
    * @return the deserialized binary tree
    */
-  public TreeNode deserialize(String data) {
-    List<String> nodes = new LinkedList<>(Arrays.asList(data.split(SEP)));
-    return doDeserialize(nodes);
+  public TreeNode deserializeUsePreOrderTraversal(String data) {
+    if (data == null || data.length() == 0) {
+      return null;
+    }
+
+    List<String> list = new LinkedList<>();
+    String[] nodes = data.split(SEP);
+    for (String node : nodes) {
+      list.add(node);
+    }
+    return deserializeUsePreOrderTraversal(list);
   }
 
-  private TreeNode doDeserialize(List<String> nodes) {
+  private TreeNode deserializeUsePreOrderTraversal(List<String> nodes) {
     if (nodes.isEmpty()) {
       return null;
     }
@@ -56,20 +64,20 @@ public class Codec {
 
     TreeNode root = new TreeNode(Integer.parseInt(rootVal));
     nodes.remove(0);
-    root.left = doDeserialize(nodes);
-    root.right = doDeserialize(nodes);
+    root.left = deserializeUsePreOrderTraversal(nodes);
+    root.right = deserializeUsePreOrderTraversal(nodes);
     return root;
   }
 
-  private StringBuilder doSerialize(TreeNode root, StringBuilder sb) {
+  private StringBuilder serializeUsePreOrderTraversal(TreeNode root, StringBuilder sb) {
     if (root == null) {
       sb.append(NULL).append(SEP);
       return sb;
     }
 
     sb.append(root.val).append(SEP);
-    doSerialize(root.left, sb);
-    doSerialize(root.right, sb);
+    serializeUsePreOrderTraversal(root.left, sb);
+    serializeUsePreOrderTraversal(root.right, sb);
     return sb;
   }
 
