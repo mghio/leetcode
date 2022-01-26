@@ -25,15 +25,15 @@ public class ConvertBST {
     return root;
   }
 
-  private void traverse(TreeNode root) {
-    if (root == null) {
+  private void traverse(TreeNode node) {
+    if (node == null) {
       return;
     }
 
-    traverse(root.right);
-    sum += root.val;
-    root.val = sum;
-    traverse(root.left);
+    traverse(node.right);
+    sum += node.val;
+    node.val = sum;
+    traverse(node.left);
   }
 
 }
