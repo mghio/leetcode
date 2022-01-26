@@ -1,5 +1,8 @@
 package cn.mghio.leetcode.bst;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * Implement a function to check if a binary tree is a binary search tree.
  *
@@ -16,6 +19,32 @@ public class IsValidBST {
    */
   public boolean isValidBST(TreeNode root) {
     return isValidBST(root, null, null);
+  }
+
+  /**
+   * Implement a function to check if a binary tree is a binary search tree.
+   *
+   * @param root the root node
+   * @return return true if a binary tree is a binary search tree, else false
+   */
+  public boolean isValidBSTSolution2(TreeNode root) {
+    Deque<TreeNode> stack = new LinkedList<>();
+    int inorder = -Integer.MAX_VALUE;
+
+    while (!stack.isEmpty() || root != null) {
+      while (root != null) {
+        stack.push(root);
+        root = root.left;
+      }
+
+      root = stack.pop();
+      if (root.val <= inorder) {
+        return false;
+      }
+      inorder = root.val;
+      root = root.right;
+    }
+    return true;
   }
 
   /**
