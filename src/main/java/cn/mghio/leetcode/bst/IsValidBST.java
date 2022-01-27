@@ -29,7 +29,7 @@ public class IsValidBST {
    */
   public boolean isValidBSTSolution2(TreeNode root) {
     Deque<TreeNode> stack = new LinkedList<>();
-    int inorder = -Integer.MAX_VALUE;
+    int inorder = Integer.MIN_VALUE;
 
     while (!stack.isEmpty() || root != null) {
       while (root != null) {
