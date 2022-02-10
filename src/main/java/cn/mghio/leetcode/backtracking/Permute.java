@@ -1,5 +1,6 @@
 package cn.mghio.leetcode.backtracking;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class Permute {
 
-  private final List<List<Integer>> ans = new LinkedList<>();
+  private final List<List<Integer>> res = new LinkedList<>();
 
   /**
    * Given an array nums of distinct integers, return all the possible permutations.
@@ -22,21 +23,22 @@ public class Permute {
    */
   public List<List<Integer>> permute(int[] nums) {
     if (nums == null || nums.length == 0) {
-      return ans;
+      return res;
     }
 
     LinkedList<Integer> track = new LinkedList<>();
     backtrack(nums, track);
-    return ans;
+    return res;
   }
 
   private void backtrack(int[] nums, LinkedList<Integer> track) {
     if (nums.length == track.size()) {
-      ans.add(new LinkedList<>(track));
+      res.add(new ArrayList<>(track));
       return;
     }
 
     for (int num : nums) {
+      // O(N)
       if (track.contains(num)) {
         continue;
       }
