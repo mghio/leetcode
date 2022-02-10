@@ -22,8 +22,8 @@ public class MoveZeroes {
     }
 
     int noZeroElementIndex = removeElement(nums, 0);
-    for (int i = noZeroElementIndex; noZeroElementIndex < nums.length; i++) {
-      nums[i] = 0;
+    for (; noZeroElementIndex < nums.length; noZeroElementIndex++) {
+      nums[noZeroElementIndex] = 0;
     }
   }
 
