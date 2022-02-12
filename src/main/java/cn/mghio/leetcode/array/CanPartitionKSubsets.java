@@ -18,7 +18,7 @@ public class CanPartitionKSubsets {
       return false;
     }
 
-    if (nums.length > k) {
+    if (nums.length < k) {
       return false;
     }
 
