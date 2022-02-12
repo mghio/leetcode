@@ -42,7 +42,7 @@ public class SubSets {
     return ans;
   }
 
-  private List<List<Integer>> res = new ArrayList<>();
+  private final List<List<Integer>> res = new ArrayList<>();
 
   /**
    * Return all possible subsets (the power set).
