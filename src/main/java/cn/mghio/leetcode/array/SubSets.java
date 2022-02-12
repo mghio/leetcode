@@ -1,6 +1,7 @@
 package cn.mghio.leetcode.array;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -39,6 +40,33 @@ public class SubSets {
     }
 
     return ans;
+  }
+
+  private List<List<Integer>> res = new ArrayList<>();
+
+  /**
+   * Return all possible subsets (the power set).
+   *
+   * @param nums the array nums
+   * @return all possible subsets
+   */
+  public List<List<Integer>> subsetsSolution2(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return new ArrayList<>();
+    }
+
+    LinkedList<Integer> track = new LinkedList<>();
+    backtrack(nums, 0, track);
+    return res;
+  }
+
+  private void backtrack(int[] nums, int start, LinkedList<Integer> track) {
+    res.add(new LinkedList<>(track));
+    for (int i = start; i < nums.length; i++) {
+      track.addLast(nums[i]);
+      backtrack(nums, i + 1, track);
+      track.pollLast();
+    }
   }
 
 }
