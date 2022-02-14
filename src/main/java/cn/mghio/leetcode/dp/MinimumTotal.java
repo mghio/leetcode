@@ -66,6 +66,8 @@ public class MinimumTotal {
     return mini[0];
   }
 
+  private int[][] memo;
+
   /**
    * Given a triangle array, return the minimum path sum from top to bottom.
    *
@@ -77,6 +79,7 @@ public class MinimumTotal {
       return 0;
     }
 
+    memo = new int[triangle.size()][triangle.size()];
     return dfs(triangle, 0, 0);
   }
 
@@ -85,7 +88,12 @@ public class MinimumTotal {
       return 0;
     }
 
-    return Math.min(dfs(triangle, i + 1, j), dfs(triangle, i + 1, j + 1)) + triangle.get(i).get(j);
+    if (memo[i][j] != 0) {
+      return memo[i][j];
+    }
+
+    memo[i][j] = Math.min(dfs(triangle, i + 1, j), dfs(triangle, i + 1, j + 1)) + triangle.get(i).get(j);
+    return memo[i][j];
   }
 
 }
