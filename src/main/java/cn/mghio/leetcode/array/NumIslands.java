@@ -71,11 +71,7 @@ public class NumIslands {
   private void dfs(char[][] grid, int i, int j) {
     int m = grid.length;
     int n = grid[0].length;
-    if (i < 0 || j < 0 || i >= m || j >= n) {
-      return;
-    }
-
-    if (grid[i][j] == '0') {
+    if (i < 0 || j < 0 || i >= m || j >= n || grid[i][j] == '0') {
       return;
     }
 
