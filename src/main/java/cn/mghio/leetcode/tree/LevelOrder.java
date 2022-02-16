@@ -95,4 +95,38 @@ public class LevelOrder {
 
     return ans;
   }
+
+  /**
+   * print the binary tree in zigzag order, this first line is printed from left to right,
+   * the second layer is printed from right to left.
+   *
+   * @param root the root node
+   * @return the result
+   */
+  public List<List<Integer>> levelOrderSolution3(TreeNode root) {
+    List<List<Integer>> res = new ArrayList<>();
+    if (root == null) {
+      return res;
+    }
+
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+
+    while (!queue.isEmpty()) {
+      int levelSize = queue.size();
+      List<Integer> levelValues = new ArrayList<>();
+      for (int i = 0; i < levelSize; i++) {
+        TreeNode curNode = queue.poll();
+        levelValues.add(curNode.val);
+        if (curNode.left != null) {
+          queue.add(curNode.left);
+        }
+        if (curNode.right != null) {
+          queue.add(curNode.right);
+        }
+      }
+      res.add(levelValues);
+    }
+    return res;
+  }
 }
