@@ -117,6 +117,8 @@ public class LevelOrder {
       List<Integer> levelValues = new ArrayList<>();
       for (int i = 0; i < levelSize; i++) {
         TreeNode curNode = queue.poll();
+        assert curNode != null;
+
         levelValues.add(curNode.val);
         if (curNode.left != null) {
           queue.add(curNode.left);
