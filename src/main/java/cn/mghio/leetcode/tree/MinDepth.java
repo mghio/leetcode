@@ -48,4 +48,33 @@ public class MinDepth {
     return depth;
   }
 
+  /**
+   * Given a binary tree, find its minimum depth.
+   *
+   * @param root the root node
+   * @return the minimum depth
+   */
+  public int minDepthUseDFS(TreeNode root) {
+    if (root == null) {
+      return 0;
+    }
+
+    int depth = 1;
+    if (root.left == null && root.right == null) {
+      return depth;
+    }
+
+    int minDepth = Integer.MAX_VALUE;
+
+    if (root.left != null) {
+      minDepth = Math.min(minDepthUseDFS(root.left), minDepth);
+    }
+
+    if (root.right != null) {
+      minDepth = Math.min(minDepthUseDFS(root.right), minDepth);
+    }
+
+    return minDepth + 1;
+  }
+
 }
