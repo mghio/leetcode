@@ -44,4 +44,44 @@ public class EraseOverlapIntervals {
     return res;
   }
 
+  /**
+   * Given an array of intervals intervals where intervals[i] = [starti, endi], return the minimum
+   * number of intervals you need to remove to make the rest of the intervals non-overlapping.
+   *
+   * @param intervals the intervals
+   * @return the minimum number of intervals
+   */
+  public static int eraseOverlapIntervalsSolution2(int[][] intervals) {
+    if (intervals == null || intervals.length == 0) {
+      return 0;
+    }
+
+    Arrays.sort(intervals, new Comparator<int[]>() {
+      @Override
+      public int compare(int[] o1, int[] o2) {
+        return o1[0] - o2[0];
+      }
+    });
+
+    int n = intervals.length;
+    int[] dp = new int[n];
+    Arrays.fill(dp, 1);
+    for (int i = 1; i < n; i++) {
+      for (int j = 0; j < i; j++) {
+        if (intervals[j][1] <= intervals[i][0]) {
+          dp[i] = Math.max(dp[i], dp[j] + 1);
+        }
+      }
+    }
+
+    int max = dp[0];
+    for (int i = 1; i < n; i++) {
+      if (max < dp[i]) {
+       max = dp[i];
+      }
+    }
+
+    return n - max;
+  }
+
 }
