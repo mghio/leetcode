@@ -39,4 +39,26 @@ public class MaxSubArray {
     return res;
   }
 
+  /**
+   * Given an integer array nums, find the contiguous subarray (containing at least one number)
+   * which has the largest sum and return its sum.
+   *
+   * @param nums the source arrays
+   * @return the sum
+   */
+  public int maxSubArraySolution2(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+
+    int pre = 0;
+    int res = nums[0];
+    for (int num : nums) {
+      pre = Math.max(pre + num, num);
+      res = Math.max(pre, res);
+    }
+
+    return res;
+  }
+
 }
