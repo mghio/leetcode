@@ -1,5 +1,7 @@
 package cn.mghio.leetcode.dp;
 
+import java.util.Arrays;
+
 /**
  * Given two strings word1 and word2, return the minimum number of operations required to convert
  * word1 to word2.
@@ -15,6 +17,8 @@ package cn.mghio.leetcode.dp;
  */
 public class MinEditDistance {
 
+  private int[][] memo;
+
   /**
    * Given two strings word1 and word2, return the minimum number of operations required to convert
    * word1 to word2.
@@ -26,8 +30,12 @@ public class MinEditDistance {
   public int minEditDist(String word1, String word2) {
     int m = word1.length();
     int n = word2.length();
-    int[][] dp = new int[m + 1][n + 1];
+    memo = new int[m][n];
+    for (int[] ints : memo) {
+      Arrays.fill(ints, -1);
+    }
 
+    int[][] dp = new int[m + 1][n + 1];
     for (int i = 1; i <= m; i++) {
       dp[i][0] = i;
     }
@@ -37,6 +45,11 @@ public class MinEditDistance {
 
     for (int i = 1; i <= m; i++) {
       for (int j = 1; j <= n; j++) {
+        if (memo[i][j] != -1) {
+          dp[i][j] = memo[i][j];
+          continue;
+        }
+
         if (word1.charAt(i - 1) == word2.charAt(j - 1)) {
           dp[i][j] = dp[i - 1][j - 1];
         } else {
