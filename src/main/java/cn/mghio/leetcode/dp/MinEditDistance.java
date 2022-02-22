@@ -93,11 +93,11 @@ public class MinEditDistance {
       for (int j = 1; j < n + 1; j++) {
         int left = dp[i - 1][j] + 1;
         int down = dp[i][j - 1] + 1;
-        int leftDown = dp[i - 1][j - 1];
+        int leftDown = dp[i - 1][j - 1] + 1;
         char c1 = word1.charAt(i - 1);
         char c2 = word2.charAt(j - 1);
-        if (c1 != c2) {
-          leftDown += 1;
+        if (c1 == c2) {
+          leftDown -= 1;
         }
         dp[i][j] = Math.min(left, Math.min(down, leftDown));
       }
