@@ -26,12 +26,12 @@ public class IsMatch {
   }
 
   private boolean dp(String s, int i, String p, int j) {
-    if (j == p.length()) {
-      return i == s.length();
-    }
-
     int m = s.length();
     int n = p.length();
+    if (j == n) {
+      return i == m;
+    }
+
     if (i == s.length()) {
       if ((n - j) % 2 == 1) {
         return false;
