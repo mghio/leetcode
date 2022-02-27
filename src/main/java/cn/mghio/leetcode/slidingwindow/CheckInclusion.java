@@ -27,38 +27,40 @@ public class CheckInclusion {
       return true;
     }
 
-    Map<Character, Integer> needs = new HashMap<>();
+    int left = 0;
+    int right = 0;
+    int valid = 0;
+    Map<Character, Integer> need = new HashMap<>();
     Map<Character, Integer> window = new HashMap<>();
-    for (char c : t.toCharArray()) {
-      needs.put(c, needs.getOrDefault(c, 0) + 1);
+    for (char c : s.toCharArray()) {
+      need.putIfAbsent(c, need.getOrDefault(c, 0) + 1);
     }
 
-    int left = 0, right = 0;
-    int valid = 0;
     while (right < s.length()) {
       char c = s.charAt(right);
       right++;
-      if (needs.containsKey(c)) {
+      if (need.containsKey(c)) {
         window.put(c, window.getOrDefault(c, 0) + 1);
-        if (Objects.equals(needs.get(c), window.get(c))) {
+        if (Objects.equals(need.get(c), window.get(c))) {
           valid++;
         }
       }
 
       while (right - left >= t.length()) {
-        if (valid == needs.size()) {
+        if (valid == need.size()) {
           return true;
         }
         char d = s.charAt(left);
         left++;
-        if (needs.containsKey(d)) {
-          if (Objects.equals(needs.get(d), window.get(d))) {
+        if (need.containsKey(d)) {
+          if (Objects.equals(need.get(d), window.get(d))) {
             valid--;
           }
           window.put(d, window.get(d) - 1);
         }
       }
     }
+
     return false;
   }
 
