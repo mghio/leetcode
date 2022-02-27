@@ -1,7 +1,7 @@
 package cn.mghio.leetcode.slidingwindow;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -23,42 +23,42 @@ public class FindAnagrams {
    * return the answer in any order.
    *
    * @param s the source string
-   * @param t the target string
+   * @param p the target string
    * @return the result
    */
-  public List<Integer> findAnagrams(String s, String t) {
-    if (s == null || s.length() == 0 || t == null || t.length() == 0) {
+  public List<Integer> findAnagrams(String s, String p) {
+    if (s == null || s.length() == 0 || p == null || p.length() == 0) {
       return List.of();
     }
 
-    Map<Character, Integer> needs = new HashMap<>();
-    Map<Character, Integer> window = new HashMap<>();
-    for (char c : t.toCharArray()) {
-      needs.put(c, needs.getOrDefault(c, 0) + 1);
-    }
-
-    int left = 0, right = 0;
+    int left = 0;
+    int right = 0;
     int valid = 0;
-    List<Integer> res = new ArrayList<>();
+    List<Integer> res = new LinkedList<>();
+    Map<Character, Integer> window = new HashMap<>();
+    Map<Character, Integer> need = new HashMap<>();
+    for (char c : p.toCharArray()) {
+      need.put(c, need.getOrDefault(c, 0 ) + 1);
+    }
 
     while (right < s.length()) {
       char c = s.charAt(right);
       right++;
-      if (needs.containsKey(c)) {
-        window.put(c, window.getOrDefault(c, 0) + 1);
-        if (Objects.equals(needs.get(c), window.get(c))) {
+      if (need.containsKey(c)) {
+        window.put(c, window.getOrDefault(c, 0 ) + 1);
+        if (Objects.equals(window.get(c), need.get(c))) {
           valid++;
         }
       }
 
-      while (right - left >= t.length()) {
-        if (valid == needs.size()) {
+      while (right - left >= p.length()) {
+        if (valid == need.size()) {
           res.add(left);
         }
         char d = s.charAt(left);
         left++;
-        if (needs.containsKey(d)) {
-          if (Objects.equals(needs.get(d), window.get(d))) {
+        if (need.containsKey(d)) {
+          if (Objects.equals(need.get(d), window.get(d))) {
             valid--;
           }
           window.put(d, window.get(d) - 1);
