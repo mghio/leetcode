@@ -27,48 +27,44 @@ public class MinWindow {
       return "";
     }
 
-    Map<Character, Integer> needs = new HashMap<>();
-    Map<Character, Integer> window = new HashMap<>();
     int left = 0;
     int right = 0;
-    // the number of characters in the window that meet the need condition
     int valid = 0;
+    int start = 0;
+    int len = Integer.MAX_VALUE;
+    Map<Character, Integer> window = new HashMap<>();
+    Map<Character, Integer> need = new HashMap<>();
 
-    for (char c : t.toCharArray()) {
-      needs.put(c, needs.getOrDefault(c, 0) + 1);
+    char[] tChars = t.toCharArray();
+    for (char tChar : tChars) {
+      need.put(tChar, need.getOrDefault(tChar, 0) + 1);
     }
 
-    // start index
-    int start = 0;
-    // length
-    int len = Integer.MAX_VALUE;
     while (right < s.length()) {
       char c = s.charAt(right);
       right++;
-      if (needs.containsKey(c)) {
+      if (need.containsKey(c)) {
         window.put(c, window.getOrDefault(c, 0) + 1);
-        if (Objects.equals(window.get(c), needs.get(c))) {
+        if (Objects.equals(window.get(c), need.get(c))) {
           valid++;
         }
       }
 
-      while (valid == needs.size()) {
+      while (valid == need.size()) {
         if (right - left < len) {
           start = left;
           len = right - left;
         }
-
         char d = s.charAt(left);
         left++;
-        if (needs.containsKey(d)) {
-          if (Objects.equals(window.get(d), needs.get(d))) {
+        if (need.containsKey(d)) {
+          if (Objects.equals(window.get(d), need.get(d))) {
             valid--;
           }
           window.put(d, window.get(d) - 1);
         }
       }
     }
-
     return len == Integer.MAX_VALUE ? "" : s.substring(start, start + len);
   }
 
