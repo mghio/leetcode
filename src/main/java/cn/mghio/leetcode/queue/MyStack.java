@@ -12,7 +12,7 @@ import java.util.Queue;
  */
 public class MyStack {
 
-  private Queue<Integer> queue;
+  private final Queue<Integer> queue;
 
   public MyStack() {
     queue = new LinkedList<>();
@@ -26,11 +26,11 @@ public class MyStack {
     }
   }
 
-  public int pop() {
+  public Integer pop() {
     return queue.poll();
   }
 
-  public int top() {
+  public Integer top() {
     return queue.peek();
   }
 
