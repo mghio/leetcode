@@ -38,14 +38,7 @@ public class MergeTwoList {
       p = p.next;
     }
 
-    if (p1 != null) {
-      p.next = p1;
-    }
-
-    if (p2 != null) {
-      p.next = p2;
-    }
-
+    p.next = p1 != null ? p1 : p2;
     return dummy.next;
   }
 
