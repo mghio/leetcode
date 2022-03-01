@@ -66,6 +66,33 @@ public class MergeKList {
     return res;
   }
 
+  /**
+   * Merge all the linked-lists into one sorted linked-list and return it.
+   *
+   * @param lists the list node array
+   * @return the result
+   */
+  public ListNode mergeKListSolution3(ListNode[] lists) {
+    if (lists == null || lists.length == 0) {
+      return null;
+    }
+
+    return merge(lists, 0, lists.length - 1);
+  }
+
+  private ListNode merge(ListNode[] lists, int l, int r) {
+    if (l > r) {
+      return null;
+    }
+
+    if (l == r) {
+      return lists[l];
+    }
+
+    int mid = (l + r) >> 1;
+    return mergeTwoLists(merge(lists, l, mid), merge(lists, mid + 1, r));
+  }
+
   private ListNode mergeTwoLists(ListNode head1, ListNode head2) {
     ListNode dummy = new ListNode(-1);
     ListNode p = dummy;
