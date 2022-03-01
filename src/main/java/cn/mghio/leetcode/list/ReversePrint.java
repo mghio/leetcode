@@ -32,4 +32,28 @@ public class ReversePrint {
     return res;
   }
 
+  private int[] res;
+  private int i = 0;
+  private int j = 0;
+
+  public int[] reversePrintSolution2(ListNode head) {
+    if (head == null) {
+      return new int[]{};
+    }
+
+    solve(head);
+    return res;
+  }
+
+  public void solve(ListNode head) {
+    if (head == null) {
+      res = new int[i];
+      return;
+    }
+    i++;
+    solve(head.next);
+    res[j] = head.val;
+    j++;
+  }
+
 }
