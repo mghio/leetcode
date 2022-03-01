@@ -32,4 +32,25 @@ public class GetKthFromEnd {
     return p2;
   }
 
+  /**
+   * Input a linked list, and output the kth node from the bottom of the linked list.
+   *
+   * @param head the first node of linked list
+   * @param k the k end
+   * @return the kth node
+   */
+  public ListNode getKthFromEndSolution2(ListNode head, int k) {
+    int n = 0;
+    ListNode p;
+    for (p = head; p != null; p = p.next) {
+      n++;
+    }
+
+    for (p = head; n > k; n--) {
+      p = p.next;
+    }
+
+    return p;
+  }
+
 }
