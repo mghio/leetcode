@@ -21,18 +21,18 @@ public class MaxSubArray {
       return 0;
     }
 
-    int n = nums.length;
-    int[] dp = new int[n];
-    dp[0] = nums[0];
+    int len = nums.length;
+    int[] dp = new int[len];
 
-    for (int i = 1; i < n; i++) {
+    dp[0] = nums[0];
+    for (int i = 1; i < len; i++) {
       dp[i] = Math.max(nums[i], nums[i] + dp[i - 1]);
     }
 
     int res = Integer.MIN_VALUE;
-    for (int i : dp) {
-      if (res < i) {
-        res = i;
+    for (int i = 0; i < len; i++) {
+      if (res < dp[i]) {
+        res = dp[i];
       }
     }
 
