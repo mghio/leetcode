@@ -19,4 +19,12 @@ public class HammingWeight {
     return res;
   }
 
+  public int hammingWeightSolution2(int n) {
+    int res = 0;
+    while (n != 0) {
+      n &= n - 1;
+    }
+    return res;
+  }
+
 }
