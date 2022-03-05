@@ -1,7 +1,5 @@
 package cn.mghio.leetcode.dp;
 
-import java.util.Arrays;
-
 /**
  * Given an m x n grid filled with non-negative numbers, find a path from top left to bottom right,
  * which minimizes the sum of all numbers along its path.
@@ -28,12 +26,7 @@ public class MinPathSum {
 
     int row = grid.length;
     int col = grid[0].length;
-
     memo = new int[row][col];
-    for (int[] ints : memo) {
-      Arrays.fill(ints, -1);
-    }
-
     return dp(grid, row - 1, col - 1);
   }
 
@@ -46,7 +39,7 @@ public class MinPathSum {
       return Integer.MAX_VALUE;
     }
 
-    if (memo[i][j] != -1) {
+    if (memo[i][j] != 0) {
       return memo[i][j];
     }
 
