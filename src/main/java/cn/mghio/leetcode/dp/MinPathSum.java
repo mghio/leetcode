@@ -22,29 +22,21 @@ public class MinPathSum {
       return 0;
     }
 
-    int rowLen = grid.length;
-    int colLen = grid[0].length;
+    int row = grid.length;
+    int col = grid[0].length;
+    return dp(grid, row - 1, col - 1);
+  }
 
-    int[][] dp = new int[rowLen][colLen];
-    int sum = 0;
-    // init first row data
-    for (int i = 0; i < colLen; i++) {
-      sum += grid[0][i];
-      dp[0][i] = sum;
-    }
-    sum = 0;
-    // init first column data
-    for (int i = 0; i < rowLen; i++) {
-      sum += grid[i][0];
-      dp[i][0] = sum;
+  private int dp(int[][] grid, int i, int j) {
+    if (i == 0 && j == 0) {
+      return grid[0][0];
     }
 
-    for (int i = 1; i < rowLen; i++) {
-      for (int j = 1; j < colLen; j++) {
-        dp[i][j] = grid[i][j] + Math.min(dp[i][j - 1], dp[i - 1][j]);
-      }
+    if (i < 0 || j < 0) {
+      return Integer.MAX_VALUE;
     }
-    return dp[rowLen - 1][colLen - 1];
+
+    return Math.min(dp(grid, i - 1, j), dp(grid, i, j - 1)) + grid[i][j];
   }
 
 }
