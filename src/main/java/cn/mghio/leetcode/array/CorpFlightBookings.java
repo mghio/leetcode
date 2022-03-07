@@ -84,24 +84,24 @@ public class CorpFlightBookings {
    * @return the total number of seats reserved for flight i
    */
   public int[] corpFlightBookingsSolution2(int[][] bookings, int n) {
-    int[] res = new int[n];
-    if (bookings == null || bookings.length == 0 || n <= 0) {
-      return res;
+    if (bookings == null || bookings.length == 0 || bookings[0].length == 0) {
+      return new int[]{};
     }
 
     int[] diff = new int[n];
     for (int[] booking : bookings) {
-      int i = booking[0] - 1;
-      int j = booking[1] - 1;
-      int val = booking[2];
-      diff[i] += val;
-      if (j + 1 < n) {
-        diff[j + 1] -= val;
+      int startIndex = booking[0] - 1;
+      int endIndex = booking[1] - 1;
+      int seats = booking[2];
+      diff[startIndex] += seats;
+      if (endIndex + 1 < n) {
+        diff[endIndex + 1] -= seats;
       }
     }
 
+    int[] res = new int[n];
     res[0] = diff[0];
-    for (int i = 1; i < diff.length; i++) {
+    for (int i = 1; i < n; i++) {
       res[i] = res[i - 1] + diff[i];
     }
 
