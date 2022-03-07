@@ -39,4 +39,32 @@ public class LongestPalindromeSubseq {
     return dp[0][len - 1];
   }
 
+  /**
+   * Find the longest palindromic subsequence's length in s.
+   *
+   * @param s the original string
+   * @return the longest palindromic subsequence
+   */
+  public int longestPalindromeSubseqSolution2(String s) {
+    if (s == null || s.length() == 0) {
+      return 0;
+    }
+
+    int len = s.length();
+    int[] dp = new int[len];
+    char[] arr = s.toCharArray();
+
+    for (int i = len - 1; i >= 0; i--) {
+      for (int j = i + 1; j < len; j++) {
+        if (arr[i] == arr[j]) {
+          dp[j] = dp[j - 1] + 2;
+        } else {
+          dp[j] = Math.max(dp[j], dp[j - 1]);
+        }
+      }
+    }
+
+    return dp[len - 1];
+  }
+
 }
