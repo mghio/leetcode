@@ -20,14 +20,15 @@ public class RemoveNthFromEnd {
     SinglyNode dummy = new SinglyNode(-1, head);
     SinglyNode first = head;
     SinglyNode second = dummy;
+
     for (int i = 0; i < n; i++) {
       first = first.next;
     }
+
     while (first != null) {
       first = first.next;
       second = second.next;
     }
-    // delete nth node
     second.next = second.next.next;
     return dummy.next;
   }
