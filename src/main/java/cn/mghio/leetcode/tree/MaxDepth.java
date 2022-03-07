@@ -1,5 +1,8 @@
 package cn.mghio.leetcode.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Given the root of a binary tree, return its maximum depth.
  *
@@ -27,6 +30,38 @@ public class MaxDepth {
     }
 
     return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
+  }
+
+  /**
+   * Given the root of a binary tree, return its maximum depth.
+   *
+   * @param root the tree root node
+   * @return the maximum depth
+   */
+  public int maxDepthSolution2(TreeNode root) {
+    if (root == null) {
+      return 0;
+    }
+
+    int res = 0;
+    Queue<TreeNode> queue = new LinkedList<>();
+    queue.offer(root);
+    while (!queue.isEmpty()) {
+      int size = queue.size();
+      while (size > 0) {
+        TreeNode currNode = queue.poll();
+        assert currNode != null;
+        if (currNode.left != null) {
+          queue.offer(currNode.left);
+        }
+        if (currNode.right != null) {
+          queue.offer(currNode.right);
+        }
+        size--;
+      }
+      res++;
+    }
+    return res;
   }
 
 }
