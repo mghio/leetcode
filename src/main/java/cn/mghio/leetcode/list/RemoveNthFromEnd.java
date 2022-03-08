@@ -17,18 +17,18 @@ public class RemoveNthFromEnd {
    * @return the nth node from the end of list
    */
   public SinglyNode removeNthFromEnd(SinglyNode head, int n) {
-    SinglyNode dummy = new SinglyNode(-1, head);
     SinglyNode first = head;
-    SinglyNode second = dummy;
-
     for (int i = 0; i < n; i++) {
       first = first.next;
     }
 
+    SinglyNode dummy = new SinglyNode(-1, head);
+    SinglyNode second = dummy;
     while (first != null) {
       first = first.next;
       second = second.next;
     }
+
     second.next = second.next.next;
     return dummy.next;
   }
