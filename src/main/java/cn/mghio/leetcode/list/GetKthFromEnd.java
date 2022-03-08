@@ -18,18 +18,18 @@ public class GetKthFromEnd {
    * @return the kth node
    */
   public ListNode getKthFromEnd(ListNode head, int k) {
-    ListNode p1 = head;
+    ListNode first = head;
     for (int i = 0; i < k; i++) {
-      p1 = p1.next;
+      first = first.next;
     }
 
-    ListNode p2 = head;
-    while (p1 != null) {
-      p2 = p2.next;
-      p1 = p1.next;
+    ListNode second = head;
+    while (first != null) {
+      first = first.next;
+      second = second.next;
     }
 
-    return p2;
+    return second;
   }
 
   /**
