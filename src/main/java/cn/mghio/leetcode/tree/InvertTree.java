@@ -19,10 +19,13 @@ public class InvertTree {
       return null;
     }
 
-    swap(root);
+    TreeNode tempNode = root.left;
+    root.left = root.right;
+    root.right = tempNode;
 
     invertTreeSolution1(root.left);
     invertTreeSolution1(root.right);
+
     return root;
   }
 
