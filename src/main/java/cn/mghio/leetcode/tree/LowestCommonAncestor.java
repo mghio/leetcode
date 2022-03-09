@@ -65,6 +65,37 @@ public class LowestCommonAncestor {
     return null;
   }
 
+  /**
+   * Given a binary tree, find the lowest common ancestor (LCA) of two given nodes in the tree.
+   *
+   * @param root the root node
+   * @param p the p node
+   * @param q the q node
+   * @return the lowest common ancestor
+   */
+  public TreeNode lowestCommonAncestorSolution3(TreeNode root, TreeNode p, TreeNode q) {
+    if (root == null || p == null || q == null) {
+      return null;
+    }
+
+    if (root == p || root == q) {
+      return root;
+    }
+
+    TreeNode left = lowestCommonAncestorSolution3(root.left, p, q);
+    TreeNode right= lowestCommonAncestorSolution3(root.right, p, q);
+
+    if (left != null && right != null) {
+      return root;
+    }
+
+    if (left == null && right == null) {
+      return null;
+    }
+
+    return left == null ? right : left;
+  }
+
   private void dfs(TreeNode root) {
     if (root.left != null) {
       parent.put(root.left.val, root);
