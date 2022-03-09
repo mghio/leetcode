@@ -17,20 +17,21 @@ public class RemoveDuplicates {
    * @return the new length
    */
   public int removeDuplicates(int[] nums) {
-    if (nums == null || nums.length < 1) {
+    if (nums == null || nums.length == 0) {
       return 0;
     }
 
-    int p = 0;
-    int q = 1;
-    while (q < nums.length) {
-      if (nums[p] != nums[q]) {
-        nums[++p] = nums[q];
+    int slow = 0;
+    int fast = 0;
+    while (fast < nums.length) {
+      if (nums[slow] != nums[fast]) {
+        slow++;
+        nums[slow] = nums[fast];
       }
-      q++;
+      fast++;
     }
 
-    return q + 1;
+    return slow + 1;
   }
 
   /**
