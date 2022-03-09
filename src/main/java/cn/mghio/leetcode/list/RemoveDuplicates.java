@@ -21,15 +21,15 @@ public class RemoveDuplicates {
       return null;
     }
 
-    ListNode slow = head, fast = head;
+    ListNode slow = head;
+    ListNode fast = head;
     while (fast != null) {
       if (slow.val != fast.val) {
+        slow.next = fast;
         slow = slow.next;
-        slow.val = fast.val;
       }
       fast = fast.next;
     }
-
     slow.next = null;
     return head;
   }
