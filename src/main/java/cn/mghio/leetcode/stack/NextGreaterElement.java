@@ -86,7 +86,7 @@ public class NextGreaterElement {
     Deque<Integer> stack = new ArrayDeque<>();
     for (int i = nums2.length - 1; i >= 0; i--) {
       int num = nums2[i];
-      while (!stack.isEmpty() && num >= stack.peek()) {
+      while (!stack.isEmpty() && num > stack.peek()) {
         stack.pop();
       }
       map.put(num, stack.isEmpty() ? -1 : stack.peek());
