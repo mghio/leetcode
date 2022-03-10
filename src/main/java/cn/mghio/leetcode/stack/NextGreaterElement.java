@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class NextGreaterElement {
 
-  public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+  public int[] nextGreaterElementSolution1(int[] nums1, int[] nums2) {
     if (nums1 == null || nums1.length == 0 || nums2 == null || nums2.length == 0) {
       return new int[]{};
     }
@@ -42,6 +42,35 @@ public class NextGreaterElement {
       } else {
         res[i] = -1;
       }
+    }
+
+    return res;
+  }
+
+
+  public int[] nextGreaterElementSolution2(int[] nums1, int[] nums2) {
+    if (nums1 == null || nums1.length == 0 || nums2 == null || nums2.length == 0) {
+      return new int[]{};
+    }
+
+    int lenOfNums1 = nums1.length;
+    int lenOfNums2 = nums2.length;
+    int[] res = new int[lenOfNums1];
+
+    for (int i = 0; i < lenOfNums1; i++) {
+      int j = 0;
+      int curElement = nums1[i];
+
+      while (j < lenOfNums2 && nums2[j] != curElement) {
+        j++;
+      }
+
+      int k = j + 1;
+      while (k < lenOfNums2 && nums2[k] < curElement) {
+        k++;
+      }
+
+      res[i] = k < lenOfNums2 ? nums2[k] : -1;
     }
 
     return res;
