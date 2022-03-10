@@ -19,7 +19,7 @@ public class NextGreaterElement {
       return new int[]{};
     }
 
-    Map<Integer, Integer> elementToIndex = new HashMap<>();
+    Map<Integer, Integer> elementToIndex = new HashMap<>(nums2.length);
     for (int i = 0; i < nums2.length; i++) {
       elementToIndex.put(nums2[i], i);
     }
