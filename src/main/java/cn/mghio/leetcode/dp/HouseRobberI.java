@@ -44,4 +44,18 @@ public class HouseRobberI {
     return res;
   }
 
+  public int robSolution2(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+
+    int len = nums.length;
+    int[] dp = new int[len + 2];
+    for (int i = len - 1; i >= 0; i--) {
+      dp[i] = Math.max(dp[i + 1], nums[i] + dp[i + 2]);
+    }
+
+    return dp[0];
+  }
+
 }
