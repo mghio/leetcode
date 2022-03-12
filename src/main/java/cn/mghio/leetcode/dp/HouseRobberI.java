@@ -1,5 +1,7 @@
 package cn.mghio.leetcode.dp;
 
+import java.util.Arrays;
+
 /**
  * You are a professional robber planning to rob houses along a street. Each house has a certain
  * amount of money stashed, the only constraint stopping you from robbing each of them is that
@@ -15,7 +17,15 @@ package cn.mghio.leetcode.dp;
  */
 public class HouseRobberI {
 
+  private int[] memo;
+
   public int rob(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+
+    memo = new int[nums.length];
+    Arrays.fill(memo, -1);
     return dp(nums, 0);
   }
 
@@ -24,8 +34,14 @@ public class HouseRobberI {
       return 0;
     }
 
-    return Math.max(dp(nums, start + 1),
+    if (memo[start] != -1) {
+      return memo[start];
+    }
+
+    int res = Math.max(dp(nums, start + 1),
         nums[start] + dp(nums, start + 2));
+    memo[start] = res;
+    return res;
   }
 
 }
