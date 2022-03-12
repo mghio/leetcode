@@ -58,4 +58,24 @@ public class HouseRobberI {
     return dp[0];
   }
 
+  public int robSolution3(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+
+    // dp[i + 1]
+    int dpI1 = 0;
+    // dp[i + 2]
+    int dpI2 = 0;
+    // dp[i]
+    int dpI = 0;
+    for (int i = nums.length - 1; i >= 0; i--) {
+      dpI = Math.max(dpI1, nums[i] + dpI2);
+      dpI2 = dpI1;
+      dpI1 = dpI;
+    }
+
+    return dpI;
+  }
+
 }
