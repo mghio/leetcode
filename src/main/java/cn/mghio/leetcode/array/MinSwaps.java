@@ -51,4 +51,33 @@ public class MinSwaps {
     return res;
   }
 
+  public int minSwapsSolution2(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+
+    // the total number of 1 in the array
+    int cnt = 0;
+    // the maximum number of 1 in the sliding window
+    int ans = 0;
+    // 1 number in the sliding window now
+    int num = 0;
+    int len = nums.length;
+
+    for (int j : nums) {
+      cnt += j;
+    }
+
+    for (int i = 0; i < cnt; i++) {
+      num += nums[i];
+    }
+
+    ans = num;
+    for (int i = 0; i < len - 1; i++) {
+      num += nums[(cnt + i) % len] - nums[i];
+      ans = Math.max(ans, num);
+    }
+    return cnt - ans;
+  }
+
 }
