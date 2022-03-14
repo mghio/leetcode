@@ -19,7 +19,7 @@ public class MyPow {
     for (int i = 0; i < count; i++) {
       ret *= x;
     }
-    return n > 0 ? ret : 1 / ret;
+    return n > 0 ? ret : 1.0 / ret;
   }
 
 }
