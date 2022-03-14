@@ -51,6 +51,12 @@ public class MinSwaps {
     return res;
   }
 
+  /**
+   * Count the number of 1s in the sliding window, and then subtract the total number
+   *
+   * @param nums the nums array
+   * @return the minimum number of swaps
+   */
   public int minSwapsSolution2(int[] nums) {
     if (nums == null || nums.length == 0) {
       return 0;
@@ -58,8 +64,6 @@ public class MinSwaps {
 
     // the total number of 1 in the array
     int cnt = 0;
-    // the maximum number of 1 in the sliding window
-    int ans = 0;
     // 1 number in the sliding window now
     int num = 0;
     int len = nums.length;
@@ -72,7 +76,8 @@ public class MinSwaps {
       num += nums[i];
     }
 
-    ans = num;
+    // the maximum number of 1 in the sliding window
+    int ans = num;
     for (int i = 0; i < len - 1; i++) {
       num += nums[(cnt + i) % len] - nums[i];
       ans = Math.max(ans, num);
