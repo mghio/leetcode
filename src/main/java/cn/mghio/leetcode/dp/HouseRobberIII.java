@@ -19,7 +19,7 @@ import java.util.Map;
  */
 public class HouseRobberIII {
 
-  private Map<TreeNode, Integer> memo = new HashMap<>();
+  private final Map<TreeNode, Integer> memo = new HashMap<>();
 
   public int rob(TreeNode root) {
     if (root == null) {
@@ -37,6 +37,35 @@ public class HouseRobberIII {
     int res = Math.max(doIt, notDo);
     memo.put(root, res);
     return res;
+  }
+
+  public int robSolution2(TreeNode root) {
+    if (root == null) {
+      return 0;
+    }
+
+    int[] res = dp(root);
+    return Math.max(res[0], res[1]);
+  }
+
+  /**
+   * @param root the root node
+   * @return returns an array of size 2.
+   *         arr[0] means the maximum amount of money you will get if you don't rob the root.
+   *         arr[1] means the maximum amount of money you will get if you rob the root.
+   */
+  private int[] dp(TreeNode root) {
+    if (root == null) {
+      return new int[]{0, 0};
+    }
+
+    int[] left = dp(root.left);
+    int[] right = dp(root.right);
+    // Don’t rob it, you can rob the next home or not, depending on the amount money of the income
+    int notRobAmount = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+    // Rob it, you can't rob it next time
+    int robAmount = root.val + left[0] + right[0];
+    return new int[]{notRobAmount, robAmount};
   }
 
 }
