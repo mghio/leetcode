@@ -85,4 +85,39 @@ public class MinSwaps {
     return cnt - ans;
   }
 
+  /**
+   * sliding window
+   *
+   * @param nums the nums array
+   * @return the minimum number of swaps
+   */
+  public int minSwapsSolution3(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return 0;
+    }
+
+    int len = nums.length;
+    int ans = Integer.MAX_VALUE;
+    int oneCount = 0;
+
+    for (int num : nums) {
+      oneCount += num;
+    }
+
+    for (int i = 0, zeroCount = 0; i < 2 * len; i++) {
+      if (i >= oneCount) {
+        ans = Math.min(ans, zeroCount);
+        if (nums[(i - oneCount) % len] == 0) {
+          zeroCount--;
+        }
+      }
+
+      if (nums[i % len] == 0) {
+        zeroCount++;
+      }
+    }
+
+    return ans;
+  }
+
 }
