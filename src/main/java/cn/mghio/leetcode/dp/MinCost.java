@@ -25,4 +25,28 @@ public class MinCost {
     return dp[len - 1];
   }
 
+  public int minCost2(String colors, int[] neededTime) {
+    int len = colors.length();
+    if (len <= 1) {
+      return 0;
+    }
+
+    int needTime = 0;
+    int i = 0, j = 1;
+    while (j < len) {
+      if (colors.charAt(i) == colors.charAt(j)) {
+        if (neededTime[i] > neededTime[j]) {
+          needTime += neededTime[j];
+        } else {
+          needTime += neededTime[i];
+          i = j;
+        }
+      } else {
+        i = j;
+      }
+      j++;
+    }
+    return needTime;
+  }
+
 }
