@@ -12,6 +12,17 @@ import java.util.TreeSet;
  */
 public class ExamRoom {
 
+  public static void main(String[] args) {
+    ExamRoom room = new ExamRoom(10);
+    room.seat();
+    room.seat();
+    room.seat();
+    room.seat();
+    room.leave(4);
+    room.seat();
+    System.out.println(room);
+  }
+
   private final Map<Integer, int[]> startMap;
 
   private final Map<Integer, int[]> endMap;
@@ -64,7 +75,7 @@ public class ExamRoom {
     int[] left = startMap.get(p);
     int[] right = endMap.get(p);
     // merge
-    int[] merged = new int[]{left[0], right[1]};
+    int[] merged = new int[]{right[0], left[1]};
     removeInterval(left);
     removeInterval(right);
     addInterval(merged);
