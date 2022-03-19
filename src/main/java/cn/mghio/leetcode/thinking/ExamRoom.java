@@ -24,6 +24,7 @@ public class ExamRoom {
     this.n = n;
     startMap = new HashMap<>();
     endMap = new HashMap<>();
+
     pq = new TreeSet<>((a, b) -> {
       int distA = distance(a);
       int distB = distance(b);
@@ -32,6 +33,7 @@ public class ExamRoom {
       }
       return distA - distB;
     });
+
     addInterval(new int[]{-1, n});
   }
 
@@ -39,6 +41,7 @@ public class ExamRoom {
     int[] longest = pq.last();
     int x = longest[0];
     int y = longest[1];
+
     int seat;
     if (x == -1) {
       seat = 0;
@@ -47,17 +50,20 @@ public class ExamRoom {
     } else {
       seat = (y - x) / 2 + x;
     }
+
     int[] left = new int[]{x, seat};
     int[] right = new int[]{seat, y};
     removeInterval(longest);
     addInterval(left);
     addInterval(right);
+
     return seat;
   }
 
   public void leave(int p) {
     int[] left = startMap.get(p);
     int[] right = endMap.get(p);
+    // merge
     int[] merged = new int[]{left[0], right[1]};
     removeInterval(left);
     removeInterval(right);
@@ -79,6 +85,7 @@ public class ExamRoom {
   private int distance(int[] a) {
     int x = a[0];
     int y = a[1];
+
     if (x == -1) {
       return y;
     }
