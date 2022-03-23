@@ -16,7 +16,7 @@ public class FindMedianSortedArrays {
       int midIndex = totalLen / 2;
       return getKElement(nums1, nums2, midIndex + 1);
     } else {
-      int midIndex1 = len1 / 2, midIndex2 = len2 / 2;
+      int midIndex1 = len1 / 2 - 1, midIndex2 = len2 / 2;
       return (getKElement(nums1, nums2, midIndex1 + 1) + getKElement(nums1, nums2, midIndex2 + 1)) / 2.0;
     }
   }
@@ -43,7 +43,7 @@ public class FindMedianSortedArrays {
       int newIndex2 = Math.min(index2 + halfK, len2) - 1;
       int pivot1 = nums1[newIndex1];
       int pivot2 = nums2[newIndex2];
-      if (pivot1 < pivot2) {
+      if (pivot1 <= pivot2) {
         k -= newIndex1 - index1 + 1;
         index1 = newIndex1 + 1;
       } else {
