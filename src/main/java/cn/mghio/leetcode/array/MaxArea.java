@@ -23,4 +23,29 @@ public class MaxArea {
     return ret;
   }
 
+  // double point
+  public int maxArea2(int[] height) {
+    if (height == null || height.length == 0) {
+      return 0;
+    }
+
+    int startIndex = 0;
+    int endIndex = height.length - 1;
+    int ret = 0;
+    while (startIndex < endIndex) {
+      int startHeight = height[startIndex];
+      int endHeight = height[endIndex];
+      int curArea = (endIndex - startIndex) * Math.min(startHeight, endHeight);
+      ret = Math.max(ret, curArea);
+
+      if (startHeight <= endHeight) {
+        startIndex++;
+      } else {
+        endIndex--;
+      }
+    }
+
+    return ret;
+  }
+
 }
