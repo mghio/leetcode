@@ -94,6 +94,7 @@ public class Trap {
 
     int len = height.length;
     int ret = 0, curPos = 0;
+    // min heap
     Deque<Integer> stack = new LinkedList<>();
     while (curPos < len) {
       while (!stack.isEmpty() && height[curPos] > height[stack.peek()]) {
