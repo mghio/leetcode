@@ -1,5 +1,8 @@
 package cn.mghio.leetcode.array;
 
+import java.util.Deque;
+import java.util.LinkedList;
+
 /**
  * Trapping Rain Water.
  *
@@ -18,12 +21,12 @@ public class Trap {
     for (int i = 1, len = height.length; i < len - 1; i++) {
       int maxLeft = 0;
       int maxRight = 0;
-      
+
       // find the max of the left TODO refactor it!
       for (int j = i; j >= 0; j--) {
         maxLeft = Math.max(maxLeft, height[j]);
       }
-      
+
       // find the max of the right TODO refactor it!
       for (int j = i; j < len; j++) {
         maxRight = Math.max(maxLeft, height[j]);
@@ -84,4 +87,27 @@ public class Trap {
     return ret;
   }
 
+  public int trap4(int[] height) {
+    if (height == null || height.length == 0) {
+      return 0;
+    }
+
+    int len = height.length;
+    int ret = 0, curPos = 0;
+    Deque<Integer> stack = new LinkedList<>();
+    while (curPos < len) {
+      while (!stack.isEmpty() && height[curPos] > height[stack.peek()]) {
+        int top = stack.pop();
+        if (stack.isEmpty()) {
+          break;
+        }
+        int distance = curPos - stack.peek() - 1;
+        int bounded_height = Math.min(height[curPos], height[stack.peek()]) - height[top];
+        ret += distance * bounded_height;
+      }
+      stack.push(curPos++);
+    }
+    return ret;
   }
+
+}
