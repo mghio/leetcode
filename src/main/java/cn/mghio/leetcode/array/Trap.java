@@ -59,4 +59,29 @@ public class Trap {
     return ret;
   }
 
-}
+  public int trap3(int[] height) {
+    if (height == null || height.length == 0) {
+      return 0;
+    }
+
+    int len = height.length;
+    int leftIndex = 0, rightIndex = len - 1;
+    int leftMax = height[0], rightMax = height[len - 1];
+    int ret = 0;
+
+    while (leftIndex <= rightIndex) {
+      leftMax = Math.max(leftMax, height[leftIndex]);
+      rightMax = Math.max(rightMax, height[rightIndex]);
+
+      if (leftMax < rightMax) {
+        ret += leftMax - height[leftIndex];
+        leftIndex++;
+      } else {
+        ret += rightMax - height[rightIndex];
+        rightIndex--;
+      }
+    }
+    return ret;
+  }
+
+  }
