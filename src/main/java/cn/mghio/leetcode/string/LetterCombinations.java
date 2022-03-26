@@ -49,4 +49,42 @@ public class LetterCombinations {
     }
   }
 
+  /*-------------------------------------- solution 2----------------------------------------*/
+
+  private static final ConcurrentMap<Character, String> MAP2 = new ConcurrentHashMap<>() {{
+    put('2',"abc");
+    put('3', "def");
+    put('4', "ghi");
+    put('5', "jkl");
+    put('6', "mno");
+    put('7', "pqrs");
+    put('8', "tuv");
+    put('9', "wxyz");
+  }};
+
+  public List<String> letterCombinations2(String digits) {
+    List<String> combinations = new ArrayList<>();
+    if (digits == null || digits.length() == 0) {
+      return combinations;
+    }
+
+    backtrack2(combinations, digits, 0, new StringBuilder());
+    return combinations;
+  }
+
+  private void backtrack2(List<String> combinations, String digits, int index, StringBuilder sb) {
+    if (index == digits.length()) {
+      combinations.add(sb.toString());
+      return;
+    }
+
+    char digit = digits.charAt(index);
+    String letters = MAP2.get(digit);
+    for (int i = 0, len = letters.length(); i < len; i++) {
+      sb.append(letters.charAt(i));
+      backtrack2(combinations, digits, index + 1, sb);
+      sb.deleteCharAt(index);
+    }
+  }
+
 }
