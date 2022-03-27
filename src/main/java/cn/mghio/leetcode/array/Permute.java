@@ -43,4 +43,30 @@ public class Permute {
     }
   }
 
+  public List<List<Integer>> permute2(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return ret;
+    }
+
+    LinkedList<Integer> track = new LinkedList<>();
+    backtrack2(nums, track);
+    return ret;
+  }
+
+  private void backtrack2(int[] nums, LinkedList<Integer> track) {
+    if (nums.length == track.size()) {
+      ret.add(track);
+      return;
+    }
+
+    for (int num : nums) {
+      if (track.contains(num)) {
+        continue;
+      }
+      track.add(num);
+      backtrack(nums, track);
+      track.removeLast();
+    }
+  }
+
 }
