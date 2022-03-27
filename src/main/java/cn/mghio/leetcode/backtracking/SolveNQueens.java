@@ -11,13 +11,16 @@ import java.util.List;
  */
 public class SolveNQueens {
 
+  private static final char QUEEN = 'Q';
+  private static final char NO_QUEEN = '.';
+
   public List<List<String>> solveNQueens(int n) {
     List<List<String>> results = new ArrayList<>();
 
     char[][] result = new char[n][n];
     for (int i = 0; i < n; i++) {
       for (int j = 0; j < n; j++) {
-        result[i][j] = '.';
+        result[i][j] = NO_QUEEN;
       }
     }
 
@@ -28,13 +31,13 @@ public class SolveNQueens {
   private void backtrack(List<List<String>> results, char[][] result, int row) {
     for (int i = 0, len = result.length; i < len; i++) {
       if (isValid(result, row, i)) {
-        result[row][i] = 'Q';
+        result[row][i] = QUEEN;
         if (row == len - 1) {
           addToResults(results, result);
         } else {
           backtrack(results, result, row + 1);
         }
-        result[row][i] = '.';
+        result[row][i] = NO_QUEEN;
       }
     }
   }
@@ -50,21 +53,21 @@ public class SolveNQueens {
   private boolean isValid(char[][] result, int row, int col) {
     // (0...row, col)
     for (int i = 0; i < row; i++) {
-      if (result[i][col] == 'Q') {
+      if (result[i][col] == QUEEN) {
         return false;
       }
     }
 
     // (row - 1, col - 1) ... (1, 1) ... (0, 0)
     for (int i = row - 1, j = col - 1; i >= 0 && j >= 0; i--, j--) {
-      if (result[i][j] == 'Q') {
+      if (result[i][j] == QUEEN) {
         return false;
       }
     }
 
     // (row - 1, col + 1) ... (1, result.length - 2) ... (0, result.length - 1)
     for (int i = row - 1, j = col + 1; i >= 0 && j < result.length; i--, j++) {
-      if (result[i][j] == 'Q') {
+      if (result[i][j] == QUEEN) {
         return false;
       }
     }
