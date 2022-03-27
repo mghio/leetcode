@@ -1,6 +1,7 @@
 package cn.mghio.leetcode.array;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,6 +44,8 @@ public class Permute {
     }
   }
 
+  /*--------------------------------------- Solution 2 ------------------------------------------*/
+
   public List<List<Integer>> permute2(int[] nums) {
     if (nums == null || nums.length == 0) {
       return ret;
@@ -66,6 +69,36 @@ public class Permute {
       track.add(num);
       backtrack(nums, track);
       track.removeLast();
+    }
+  }
+
+  /*--------------------------------------- Solution 3 ------------------------------------------*/
+
+  public List<List<Integer>> permute3(int[] nums) {
+    if (nums == null || nums.length == 0) {
+      return ret;
+    }
+
+    List<Integer> output = new ArrayList<>();
+    for (int num : nums) {
+      output.add(num);
+    }
+
+    int cnt = nums.length;
+    backtrack(0, cnt, output);
+    return ret;
+  }
+
+  private void backtrack(int first, int n, List<Integer> output) {
+    if (first == n) {
+      ret.add(new LinkedList<>(output));
+      return;
+    }
+
+    for (int i = first; i < n; i++) {
+      Collections.swap(output, first, i);
+      backtrack(first + 1, n, output);
+      Collections.swap(output, first, i);
     }
   }
 
