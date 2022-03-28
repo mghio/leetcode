@@ -25,7 +25,7 @@ public class CombinationSum {
   }
 
   private void backtrack(LinkedList<Integer> track, int[] candidates, int index, int target) {
-    if (index == candidates.length - 1) {
+    if (index == candidates.length) {
       return;
     }
 
