@@ -33,4 +33,29 @@ public class WordBreak {
     return dp[len];
   }
 
+  public boolean wordBreakSolution2(String s, List<String> wordDict) {
+    if (s == null || s.length() == 0) {
+      return true;
+    }
+
+    int len = s.length(), maxLengthOfWord = 0;
+    boolean[] dp = new boolean[len + 1];
+    dp[0] = true;
+    Set<String> wordDictSet = new HashSet<>();
+    for (String word : wordDict) {
+      wordDictSet.add(word);
+      maxLengthOfWord = Math.max(maxLengthOfWord, word.length());
+    }
+
+    for (int i = 1; i <= len; i++) {
+      for (int j = i; j >= 0 && i - j <= maxLengthOfWord; j--) {
+        if (dp[j] && wordDictSet.contains(s.substring(j, i))) {
+          dp[i] = true;
+          break;
+        }
+      }
+    }
+    return dp[len];
+  }
+
 }
