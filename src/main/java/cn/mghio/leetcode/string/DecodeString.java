@@ -24,7 +24,7 @@ public class DecodeString {
       char curr = s.charAt(point);
       if (Character.isDigit(curr)) {
         stack.add(getDigits(s));
-      } else if (Character.isLetter(curr) || curr == '['){
+      } else if (Character.isLetter(curr) || curr == '[') {
         stack.addLast(String.valueOf(s.charAt(point++)));
       } else {
         point++;
