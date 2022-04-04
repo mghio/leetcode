@@ -23,8 +23,7 @@ public class DecodeString {
     while (point < s.length()) {
       char curr = s.charAt(point);
       if (Character.isDigit(curr)) {
-        String digits = getDigits(s);
-        stack.add(digits);
+        stack.add(getDigits(s));
       } else if (Character.isLetter(curr) || curr == '['){
         stack.addLast(String.valueOf(s.charAt(point++)));
       } else {
