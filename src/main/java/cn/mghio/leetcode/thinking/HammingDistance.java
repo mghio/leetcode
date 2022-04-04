@@ -22,4 +22,14 @@ public class HammingDistance {
     return Integer.bitCount(x ^ y);
   }
 
+  public int hammingDistance3(int x, int y) {
+    int xorResult = x ^ y;
+    int ret = 0;
+    while (xorResult > 0) {
+      ret += (1 & xorResult);
+      xorResult >>= 1;
+    }
+    return ret;
+  }
+
 }
