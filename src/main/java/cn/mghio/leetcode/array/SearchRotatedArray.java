@@ -13,23 +13,35 @@ public class SearchRotatedArray {
       return -1;
     }
 
-    int k = -1;
     int len = nums.length;
-    int curNum = nums[0];
-    for (int i = 1; i < len; i++) {
-      if (curNum > nums[i]) {
-        k = i;
-        break;
+    if (len == 1) {
+      return nums[0] == target ? 0 : -1;
+    }
+
+    int l = 0;
+    int r = len - 1;
+    while (l <= r) {
+      int mid = l + (r - l) / 2;
+      if (nums[mid] == target) {
+        return mid;
       }
-      curNum = nums[i];
+
+      if (nums[0] <= nums[mid]) {
+        if (nums[0] <= target && target < nums[mid]) {
+          r = mid - 1;
+        } else {
+          l = mid + 1;
+        }
+      } else {
+        if (nums[mid] < target && target <= nums[len - 1]) {
+          l = mid + 1;
+        } else {
+          r = mid - 1;
+        }
+      }
     }
 
-    if (k == -1) {
-      return binarySearch(target, nums, 0, len - 1);
-    }
-
-    int index = binarySearch(target, nums, 0, k - 1);
-    return index == -1 ? binarySearch(target, nums, k, len - 1) : index;
+    return -1;
   }
 
   private int binarySearch(int target, int[] nums, int begin, int end) {
