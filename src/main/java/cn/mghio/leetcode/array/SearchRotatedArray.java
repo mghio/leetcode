@@ -44,21 +44,4 @@ public class SearchRotatedArray {
     return -1;
   }
 
-  private int binarySearch(int target, int[] nums, int begin, int end) {
-    if (begin >= end) {
-      return -1;
-    }
-
-    int mid = begin + (end - begin) / 2;
-    if (nums[mid] > target) {
-      end = mid;
-    } else if (nums[mid] < target) {
-      begin = mid + 1;
-    } else {
-      return mid;
-    }
-
-    return binarySearch(target, nums, begin, end);
-  }
-
 }
