@@ -23,7 +23,7 @@ public class ReverseBetween {
    */
   public SinglyNode reverseBetween(SinglyNode head, int m, int n) {
     if (m == 1) {
-      return reverseN(head, m);
+      return reverseN(head, n);
     }
 
     head.next = reverseBetween(head.next, m - 1, n - 1);
