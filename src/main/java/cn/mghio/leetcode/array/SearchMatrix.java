@@ -129,6 +129,35 @@ public class SearchMatrix {
     return found;
   }
 
+  /**
+   * Search matrix.
+   */
+  public boolean searchMatrix5(int[][] matrix, int target) {
+    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+      return false;
+    }
+
+    int row = matrix.length;
+    int col = matrix[0].length;
+    int i = 0;
+    int j = col - 1;
+
+    while (i < row && j >= 0) {
+      int cur = matrix[i][j];
+      if (cur == target) {
+        return true;
+      }
+
+      if (cur > target) {
+        j--;
+      } else {
+        i++;
+      }
+    }
+
+    return false;
+  }
+
   private int binarySearch(int[] row, int target) {
     int l = 0;
     int h = row.length - 1;
