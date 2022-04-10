@@ -158,6 +158,36 @@ public class SearchMatrix {
     return false;
   }
 
+
+  /**
+   * Search matrix.
+   */
+  public boolean searchMatrix6(int[][] matrix, int target) {
+    if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+      return false;
+    }
+
+    int row = matrix.length;
+    int col = matrix[0].length;
+    int i = row - 1;
+    int j = 0;
+
+    while (i >= 0 && j < col) {
+      int cur = matrix[i][j];
+      if (cur == target) {
+        return true;
+      }
+
+      if (cur > target) {
+        i--;
+      } else {
+        j++;
+      }
+    }
+
+    return false;
+  }
+
   private int binarySearch(int[] row, int target) {
     int l = 0;
     int h = row.length - 1;
