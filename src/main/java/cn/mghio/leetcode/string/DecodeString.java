@@ -33,10 +33,11 @@ public class DecodeString {
           sub.addLast(stack.removeLast());
         }
         Collections.reverse(sub);
+        // remove '[' letter
         stack.removeLast();
         int repeatTimes = Integer.parseInt(stack.removeLast());
-        StringBuilder sb = new StringBuilder();
         String str = getString(sub);
+        StringBuilder sb = new StringBuilder();
         while (repeatTimes-- > 0) {
           sb.append(str);
         }
