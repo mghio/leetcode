@@ -17,4 +17,8 @@ public class HammingWeight {
     return ret;
   }
 
+  public int hammingWeight2(int n) {
+    return Integer.bitCount(n);
+  }
+
 }
