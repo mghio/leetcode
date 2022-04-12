@@ -48,4 +48,17 @@ public class CountBits {
     return ret;
   }
 
+  public int[] countBits3(int n) {
+    if (n < 0) {
+      return new int[]{};
+    }
+
+    int[] ret = new int[n + 1];
+    for (int i = 0; i <= n; i++) {
+      ret[i] = Integer.bitCount(i);
+    }
+
+    return ret;
+  }
+
 }
