@@ -61,4 +61,21 @@ public class CountBits {
     return ret;
   }
 
+  public int[] countBits4(int n) {
+    if (n < 0) {
+      return new int[]{};
+    }
+
+    int highBit = 0;
+    int[] ret = new int[n + 1];
+    for (int i = 1; i <= n; i++) {
+      if ((i & (i - 1)) == 0) {
+        highBit = i;
+      }
+      ret[i] = ret[i - highBit] + 1;
+    }
+
+    return ret;
+  }
+
 }
