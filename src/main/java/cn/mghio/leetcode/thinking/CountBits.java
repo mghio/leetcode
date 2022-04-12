@@ -29,4 +29,23 @@ public class CountBits {
     return ret;
   }
 
+  public int[] countBits2(int n) {
+    if (n < 0) {
+      return new int[]{};
+    }
+
+    int[] ret = new int[n + 1];
+    for (int i = 0; i <= n; i++) {
+      int num = 0;
+      int cur = i;
+      while (cur != 0) {
+        cur &= cur - 1;
+        num++;
+      }
+      ret[i] = num;
+    }
+
+    return ret;
+  }
+
 }
