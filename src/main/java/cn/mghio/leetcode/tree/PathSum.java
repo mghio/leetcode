@@ -33,11 +33,12 @@ public class PathSum {
     }
 
     this.sum = targetSum;
-    this.dfs(root, 0);
+//    this.dfsV1(root, 0);
+    this.dfsV2(root, 0);
     return this.paths;
   }
 
-  private void dfs(TreeNode node, int num) {
+  private void dfsV1(TreeNode node, int num) {
     num += node.val;
     this.path.add(node.val);
     if (node.left == null && node.right == null) {
@@ -47,10 +48,28 @@ public class PathSum {
     }
 
     if (node.left != null) {
-      this.dfs(node.left, num);
+      this.dfsV1(node.left, num);
     }
     if (node.right != null) {
-      this.dfs(node.right, num);
+      this.dfsV1(node.right, num);
+    }
+    this.path.remove(this.path.size() - 1);
+  }
+
+  private void dfsV2(TreeNode node, int num) {
+    if (node == null) {
+      return;
+    }
+
+    num += node.val;
+    this.path.add(node.val);
+    if (node.left == null && node.right == null) {
+      if (this.sum == num) {
+        this.paths.add(new ArrayList<>(this.path));
+      }
+    } else {
+      this.dfsV2(node.left, num);
+      this.dfsV2(node.right, num);
     }
     this.path.remove(this.path.size() - 1);
   }
